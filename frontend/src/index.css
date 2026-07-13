@@ -175,15 +175,13 @@ input {
   align-items: center;
   justify-content: center;
   height: var(--button-small-height);
-  width: var(
-    --button-small-width
-  ); /* Utilise width direct car c'est une icône carrée */
+  width: var(--button-small-width);
   box-sizing: border-box;
-  border: 1px solid transparent; /* Correction ici pour que border-color fonctionne */
-  border-radius: var(--button-small-radius); /* Correction faute de frappe */
+  border: 1px solid transparent;
+  border-radius: var(--button-small-radius);
   cursor: pointer;
   outline: none;
-  padding: 0; /* Évite les décalages de l'icône */
+  padding: 0; /* Avoid the icon to be positionned incorrectly */
 }
 
 .btn-small-white {
@@ -198,7 +196,7 @@ input {
   color: var(--color-white);
 }
 
-/* Force le SVG à bien se positionner au centre */
+/* Force SVG to be centered */
 .btn-small svg {
   display: block;
   width: 100%;
@@ -208,13 +206,11 @@ input {
 /* Profile photo image management */
 /* Image container */
 .profile-photo-container {
-  width: calc(
-    104 * 1rem / 16
-  ); /* Exemple : 80px, à ajuster selon ta maquette */
+  width: calc(104 * 1rem / 16);
   height: calc(117 * 1rem / 16);
   border-radius: var(--image-radius);
   overflow: hidden; /* CRUCIAL : Cut the image */
-  display: inline-block; /* Aligne correctement le bloc */
+  display: inline-block; /* Align the block */
 }
 
 /* Image inside the container */
@@ -229,5 +225,5 @@ input {
 
 /* Zoom effect */
 .profile-photo-container img:hover {
-  transform: scale(1.9); /* increase image size by 15% */
+  transform: scale(1.9); /* increase image size by 90% */
 }
