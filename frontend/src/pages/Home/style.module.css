@@ -1,0 +1,39 @@
+.main {
+  background-color: var(--color-bg-primary);
+  display: flex;
+  flex-direction: row;
+  justify-self: center;
+}
+
+.leftPane {
+  width: 632px;
+  height: 1024px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 55px 134px 177.59px 100px;
+}
+
+.rightPane {
+  background-size: cover;
+  min-width: 808px;
+  min-height: 1024px;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  align-items: end;
+}
+
+.info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: var(--color-blue-strong);
+  background: var(--color-white);
+  border-radius: 50px;
+  width: 288px;
+  height: 62px;
+  margin-bottom: 29px;
+  margin-right: 24px;
+}

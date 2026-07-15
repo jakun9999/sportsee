@@ -1,3 +1,38 @@
-.testClass {
-  color: red;
+.loginForm {
+  border-radius: 20px;
+  background: var(--color-white);
+  width: 398px;
+  height: 617px;
+  padding: 40px 40px 80px 40px;
+}
+
+.title {
+  color: var(--color-blue-strong);
+  margin-bottom: 40px;
+}
+
+.connection {
+  color: var(--color-black);
+  margin-bottom: 24px;
+}
+
+.label {
+  margin-bottom: 8px;
+}
+
+.inputEmail {
+  margin-bottom: 24px;
+}
+
+.inputPassword {
+  margin-bottom: 40px;
+}
+
+.button {
+  margin-bottom: 40px;
+  width: 317px !important;
+}
+
+.forgotPassword {
+  color: var(--color-black);
 }

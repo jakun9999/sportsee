@@ -4,7 +4,6 @@
 /* Global variables */
 :root {
   --font-family: "Inter", sans-serif;
-  --line-height: 1.5;
 
   /* input variables */
   --input-height: calc(58 * 1rem / 16);
@@ -14,7 +13,6 @@
 
   /* button variables */
   --button-height: calc(51 * 1rem / 16);
-  --button-width-default: calc(135 * 1rem / 16);
   --button-radius: 10px;
   --button-small-height: calc(24 * 1rem / 16);
   --button-small-width: calc(24 * 1rem / 16);
@@ -24,6 +22,7 @@
   --image-radius: 10px;
 
   /* Colors */
+  --color-bg-primary: #f2f3ff;
   --color-blue-strong: #0b23f4;
   --color-blue-medium: #5465f7;
   --color-blue-light: #b6bdfc;
@@ -140,7 +139,6 @@ input {
   text-align: center;
   white-space: nowrap;
   height: var(--button-height);
-  max-width: var(--button-width-default);
   width: 100%;
   box-sizing: border-box;
   border: none;

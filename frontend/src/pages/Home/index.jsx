@@ -1,11 +1,26 @@
 import styles from "./style.module.css";
-import CurrentWeekActivityCard from "../../components/CurrentWeekActivityCard";
+import Logo from "../../components/Logo";
+import LoginForm from "../../components/LoginForm";
+import image from "../../assets/images/home.jpg";
 
 function Home() {
   return (
-    <div>
-      <h1 className="heading-1">Hello World!</h1>
-      <CurrentWeekActivityCard />
+    <div className={styles.main}>
+      <div className={styles.leftPane}>
+        <Logo />
+        <LoginForm />
+      </div>
+      <div
+        className={styles.rightPane}
+        style={{
+          backgroundImage: `url(${image})`,
+        }}
+      >
+        <p className={`body-small ${styles.info}`}>
+          Analysez vos performances en un clin d’œil, suivez vos progrès et
+          atteignez vos objectifs.
+        </p>
+      </div>
     </div>
   );
 }
