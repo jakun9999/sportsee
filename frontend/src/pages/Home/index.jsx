@@ -1,5 +1,5 @@
 import styles from "./style.module.css";
-import Logo from "../../components/Logo";
+import HeaderLogo from "../../components/HeaderLogo";
 import LoginForm from "../../components/LoginForm";
 import image from "../../assets/images/home.jpg";
 
@@ -7,7 +7,7 @@ function Home() {
   return (
     <div className={styles.main}>
       <div className={styles.leftPane}>
-        <Logo />
+        <HeaderLogo />
         <LoginForm />
       </div>
       <div

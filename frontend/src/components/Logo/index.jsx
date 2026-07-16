@@ -45,7 +45,7 @@ const LOGO_DATA = [
 
 function Logo({ size = "large" }) {
   // Scaling the logo dimension (large for header logo, small for footer logo)
-  const scale = size === "small" ? 0.8 : 1;
+  const scale = size === "small" ? 0.9 : 1;
 
   return (
     <ul

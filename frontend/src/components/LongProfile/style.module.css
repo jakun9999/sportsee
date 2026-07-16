@@ -1,3 +1,68 @@
-.testClass {
-  color: red;
+.main {
+  width: 1052px;
+  height: 181px;
+  background: linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 0) -8.38%,
+    #ffffff 100%
+  );
+  display: flex;
+  flex-direction: row;
+  border-radius: 20px;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 52px;
+  padding-right: 52px;
+  margin-top: 108px;
+}
+
+.name {
+  color: var(--color-back);
+}
+
+.grayedText {
+  color: var(--color-gray-strong);
+}
+
+.card {
+  color: var(--color-white);
+  background: var(--color-blue-strong);
+  border-radius: 10px;
+  width: 183.01px;
+  height: 90px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 17.2px;
+}
+
+.sectionLeft,
+.sectionRight {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.sectionLeft {
+  gap: 38px;
+}
+
+.sectionRight {
+  gap: 18px;
+}
+
+.subSection {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.subSection {
+  display: flex;
+  flex-direction: column;
+}
+
+.success {
+  width: 34px;
+  height: 34px;
 }
