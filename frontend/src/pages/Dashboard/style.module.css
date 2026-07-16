@@ -4,4 +4,105 @@
 
   display: flex;
   flex-direction: column;
+  margin-bottom: 90px;
+}
+
+h2 {
+  color: var(--color-black);
+}
+
+.sectionLastPerf,
+.sectionWeekPerf {
+  flex-grow: 1;
+}
+
+.sectionLastPerf {
+  margin-top: 108px;
+}
+
+.sectionWeekPerf {
+  margin-top: 71px;
+}
+
+.perfGraphContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  margin-top: 32px;
+}
+
+.lastKm {
+  width: 445px;
+  height: 484px;
+  background: var(--color-blue-strong);
+  border-radius: 10px;
+}
+
+.lastBpm {
+  width: 583px;
+  height: 484px;
+  background: var(--color-red-strong);
+  border-radius: 10px;
+}
+
+.weekDate {
+  color: var(--color-gray-strong);
+  margin-top: 9px;
+}
+
+.weeklyGraphContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  margin-top: 32px;
+}
+
+.goals {
+  width: 450px;
+  height: 342px;
+  background: var(--color-blue-strong);
+  border-radius: 10px;
+}
+
+.summaryContainer {
+  width: 572px;
+  height: 342px;
+}
+
+.time,
+.distance {
+  background: var(--color-white);
+  border-radius: 10px;
+  width: 572px;
+  height: 103px;
+  padding-left: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  gap: 19px;
+}
+
+.distance {
+  margin-top: 16px;
+}
+
+.label {
+  color: var(--color-gray-strong);
+}
+
+.dataBlueStrong {
+  color: var(--color-blue-strong);
+}
+
+.dataBlueLight {
+  color: var(--color-blue-light);
+}
+
+.dataRedStrong {
+  color: var(--color-red-strong);
+}
+
+.dataRedLight {
+  color: var(--color-red-light);
 }
