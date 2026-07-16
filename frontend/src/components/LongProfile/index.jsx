@@ -15,7 +15,7 @@ function LongProfile({ photo, firstName, lastName, createdAt, distance }) {
   const formatedDate = dateFormatter.format(new Date(`${createdAt}T00:00:00`));
 
   return (
-    <div className={styles.main}>
+    <div className={styles.longProfile}>
       <div className={styles.sectionLeft}>
         <div className="profile-photo-container">
           <img src={photo} alt={`Photo de ${firstName} ${lastName}`} />

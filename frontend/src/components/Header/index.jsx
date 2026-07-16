@@ -4,7 +4,7 @@ import Nav from "../Nav";
 
 function Header() {
   return (
-    <div className={`body-default ${styles.main}`}>
+    <div className={`body-default ${styles.header}`}>
       <HeaderLogo />
       <Nav />
     </div>

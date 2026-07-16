@@ -12,7 +12,7 @@ function Dashboard() {
   const profile = data.userProfile.profile;
   const statistics = data.userProfile.statistics;
   return (
-    <div className={styles.main}>
+    <div className={styles.dashboard}>
       <LongProfile
         firstName={profile.firstName}
         lastName={profile.lastName}
@@ -20,6 +20,7 @@ function Dashboard() {
         photo={profile.profilePicture}
         createdAt={profile.createdAt}
       />
+      <div className={styles.main}></div>
     </div>
   );
 }

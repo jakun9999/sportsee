@@ -1,4 +1,4 @@
-.main {
+.layoutContainer {
   background: var(--color-bg-primary);
   justify-self: center;
   padding-top: 35px;
@@ -13,5 +13,8 @@
 }
 
 .outlet {
-  flex: 1;
+  flex-grow: 1;
+
+  display: flex;
+  flex-direction: column;
 }

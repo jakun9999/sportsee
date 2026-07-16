@@ -4,7 +4,7 @@ import logo from "../../assets/images/SPORTSEE.svg";
 
 function HeaderLogo() {
   return (
-    <div className={styles.main}>
+    <div className={styles.headerLogo}>
       <Logo size="large" />
       <img src={logo} alt="Logo SPORTSEE" />
     </div>

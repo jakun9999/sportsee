@@ -5,7 +5,7 @@ import image from "../../assets/images/home.jpg";
 
 function Home() {
   return (
-    <div className={styles.main}>
+    <div className={styles.home}>
       <div className={styles.leftPane}>
         <HeaderLogo />
         <LoginForm />

@@ -1,5 +1,4 @@
-.main {
-  width: 1052px;
+.longProfile {
   height: 181px;
   background: linear-gradient(
     0deg,
@@ -14,6 +13,7 @@
   padding-left: 52px;
   padding-right: 52px;
   margin-top: 108px;
+  flex-shrink: 0;
 }
 
 .name {

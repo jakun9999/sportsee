@@ -3,7 +3,7 @@ import Logo from "../Logo";
 
 function Footer() {
   return (
-    <div className={styles.main}>
+    <div className={styles.footer}>
       <ul className={styles.footerLeft}>
         <li className={styles.list}>©Sportsee</li>
         <li className={styles.list}>Tous droits réservés</li>
