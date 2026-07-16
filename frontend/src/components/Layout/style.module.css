@@ -1,0 +1,15 @@
+.main {
+  background: var(--color-bg-primary);
+  justify-self: center;
+  padding-top: 35px;
+  padding-left: 150px;
+  padding-right: 150px;
+  width: 1440px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.outlet {
+  flex: 1;
+}

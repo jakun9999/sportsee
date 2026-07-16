@@ -1,0 +1,12 @@
+.main {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+}
+
+.title {
+  color: var(--color-blue-strong);
+  width: 132.97px;
+  height: 23.41px;
+}

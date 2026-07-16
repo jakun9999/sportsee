@@ -1,4 +1,81 @@
 .logo {
-  width: 156.97px;
-  height: 23.41px;
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  align-items: flex-start;
+}
+
+/* Pills container */
+.col {
+  position: relative; /* CRUCIAL : Becomes the starting point (0,0) for top and bottom part */
+}
+
+/* Common styles for both top and bottom part of the pills */
+.colTop,
+.colBottom {
+  position: absolute; /* Out of standard stream */
+  left: 0;
+  width: 100%;
+  border-radius: 100px;
+}
+
+/* --- Red component --- */
+.colTop {
+  background: linear-gradient(180deg, #f99885 0%, #df392b 100%);
+  z-index: 2; /* stay above bottom part */
+  top: 0; /* Aligned on the top part of virtual container */
+  transform: translateY(0);
+  animation: slideRedColDown 3.5s ease-in-out infinite;
+}
+
+/* --- Blue component --- */
+.colBottom {
+  background: linear-gradient(180deg, #f4320b 0%, #5465f7 100%);
+  z-index: 1; /* Stays behind top component */
+}
+
+/* --- KEYFRAMES for animation --- */
+
+@keyframes slideRedColDown {
+  0% {
+    transform: translateY(0); /* initial top position */
+  }
+
+  /* ---- Goes down ---- */
+  40% {
+    /* OVERSHOOT */
+    transform: translateY(calc(var(--slide-distance) + var(-bottom-translate)));
+  }
+  45% {
+    /* NORMAL POSITION */
+    transform: translateY(var(--slide-distance));
+  }
+  50% {
+    /* OVERSHOOT */
+    transform: translateY(
+      calc(var(--slide-distance) + var(--bottom-translate))
+    );
+  }
+  55% {
+    /* NORMAL POSITION */
+    transform: translateY(var(--slide-distance));
+  }
+
+  /* ---- Goes up ---- */
+  85% {
+    /* OVERSHOOT */
+    transform: translateY(var(--top-translate));
+  }
+  90% {
+    /* NORMAL POSITION */
+    transform: translateY(0);
+  }
+  95% {
+    /* OVERSHOOT */
+    transform: translateY(var(--top-translate));
+  }
+  100% {
+    /* NORMAL POSITION */
+    transform: translateY(0);
+  }
 }

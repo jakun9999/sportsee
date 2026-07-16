@@ -1,3 +1,31 @@
-.testClass {
-  color: red;
+.menu {
+  background: var(--color-white);
+  border-radius: 40px;
+  width: 461px;
+  height: 49px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.navLink {
+  text-decoration: none;
+  color: var(--color-black);
+}
+
+.navLink:hover {
+  color: var(--color-blue-strong);
+  cursor: pointer;
+  transition: 300ms ease-in-out;
+}
+
+.navDisconnect {
+  text-decoration: none;
+  color: var(--color-blue-strong);
+  cursor: pointer;
+}
+
+.separator {
+  color: var(--color-blue-strong);
 }
