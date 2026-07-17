@@ -42,3 +42,11 @@ export const getWeekRange = (dateInput = new Date()) => {
     end: sunday,
   };
 };
+
+// Used for graph tooltips (to display 01.06 for the dates during
+// mouse over on the graphs)
+export const formatTooltipDate = (date) => {
+  const day = date.getDate().toString().padStart(2, "0");
+  const month = (date.getMonth() + 1).toString().padStart(2, "0"); // +1 because months start at 0
+  return `${day}.${month}`;
+};

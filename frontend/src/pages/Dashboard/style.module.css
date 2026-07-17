@@ -32,13 +32,6 @@ h2 {
   margin-top: 32px;
 }
 
-.lastKm {
-  width: 445px;
-  height: 484px;
-  background: var(--color-blue-strong);
-  border-radius: 10px;
-}
-
 .lastBpm {
   width: 583px;
   height: 484px;

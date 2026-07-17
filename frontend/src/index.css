@@ -180,6 +180,10 @@ input {
   cursor: pointer;
   outline: none;
   padding: 0; /* Avoid the icon to be positionned incorrectly */
+
+  transition:
+    background-color 300ms ease-in-out,
+    color 300ms ease-in-out;
 }
 
 .btn-small-white {
@@ -188,7 +192,7 @@ input {
   color: var(--color-black);
 }
 
-.btn-small-blue {
+.btn-small-white:hover {
   border-color: var(--color-blue-strong);
   background-color: var(--color-blue-medium);
   color: var(--color-white);

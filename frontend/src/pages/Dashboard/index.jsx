@@ -3,12 +3,14 @@ import { Navigate } from "react-router-dom";
 import { useFetchUser } from "../../hooks/useFetchUser";
 import Header from "../../components/Header";
 import LongProfile from "../../components/LongProfile";
+import WeekDistanceGraph from "../../components/WeekDistanceGraph";
 import { getWeekRange } from "../../utils/date";
 import {
   getCurrentWeekDistance,
   getCurrentWeekActiveTime,
   getTotalDistance,
 } from "../../utils/stats";
+import { act } from "react";
 
 function Dashboard() {
   const { data, isLoading, error } = useFetchUser();
@@ -37,7 +39,7 @@ function Dashboard() {
       <div className={styles.sectionLastPerf}>
         <h2 className={`heading-4`}>Vos dernières performances</h2>
         <div className={styles.perfGraphContainer}>
-          <div className={styles.lastKm}></div>
+          <WeekDistanceGraph activities={activities} />
           <div className={styles.lastBpm}></div>
         </div>
       </div>
