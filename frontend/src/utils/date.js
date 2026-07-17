@@ -37,14 +37,8 @@ export const getWeekRange = (dateInput = new Date()) => {
   const sunday = new Date(monday);
   sunday.setDate(monday.getDate() + 6);
 
-  const formatOptions = {
-    day: "2-digit",
-    month: "2-digit",
-    year: "numeric",
-  };
-
   return {
-    start: monday.toLocaleDateString("fr-FR", formatOptions),
-    end: sunday.toLocaleDateString("fr-FR", formatOptions),
+    start: monday,
+    end: sunday,
   };
 };

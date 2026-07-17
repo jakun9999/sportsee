@@ -1075,4 +1075,26 @@ export const USER_ACTIVITY = [
     },
     caloriesBurned: 590,
   },
+  {
+    date: "2026-07-15",
+    distance: 8.5,
+    duration: 55,
+    heartRate: {
+      min: 139,
+      max: 178,
+      average: 161,
+    },
+    caloriesBurned: 590,
+  },
+  {
+    date: "2026-07-17",
+    distance: 7.5,
+    duration: 45,
+    heartRate: {
+      min: 139,
+      max: 178,
+      average: 161,
+    },
+    caloriesBurned: 590,
+  },
 ];

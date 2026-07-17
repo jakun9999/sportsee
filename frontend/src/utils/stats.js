@@ -1,15 +1,40 @@
+import { getWeekRange } from "./date";
+
+// Returns activities between 2 dates
+export const getActivitiesByTime = (activities = [], start, end) => {
+  if (!Array.isArray(activities)) return 0;
+
+  const selectedActivities = activities.filter((activity) => {
+    const activityDate = new Date(activity.date);
+
+    return activityDate >= start && activityDate <= end;
+  });
+
+  return selectedActivities;
+};
+
+// Returns activity time for current week
+export const getCurrentWeekActiveTime = (activities = []) => {
+  if (!Array.isArray(activities)) return 0;
+
+  const { start, end } = getWeekRange(new Date());
+  const weeklyActivities = getActivitiesByTime(activities, start, end);
+
+  return weeklyActivities.reduce((acc, current) => {
+    return acc + current.duration;
+  }, 0);
+};
+
 // Returns distance for current week
-export const getCurrentWeekDistance = () => {
-  const date = new Date(dateInput);
-  const currentDay = date.getDay();
+export const getCurrentWeekDistance = (activities = []) => {
+  if (!Array.isArray(activities)) return 0;
 
-  const daysToMonday = currentDay === 0 ? -6 : 1 - currentDay;
+  const { start, end } = getWeekRange(new Date());
+  const weeklyActivities = getActivitiesByTime(activities, start, end);
 
-  const monday = new Date(date);
-  monday.setDate(date.getDate() + daysToMonday);
-
-  const sunday = new Date(monday);
-  sunday.setDate(monday.getDate() + 6);
+  return weeklyActivities.reduce((acc, current) => {
+    return acc + current.distance;
+  }, 0);
 };
 
 // Return an object with hours and minutes based

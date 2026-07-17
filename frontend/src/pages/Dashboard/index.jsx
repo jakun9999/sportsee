@@ -4,6 +4,10 @@ import { useFetchUser } from "../../hooks/useFetchUser";
 import Header from "../../components/Header";
 import LongProfile from "../../components/LongProfile";
 import { getWeekRange } from "../../utils/date";
+import {
+  getCurrentWeekDistance,
+  getCurrentWeekActiveTime,
+} from "../../utils/stats";
 
 function Dashboard() {
   const { data, isLoading, error } = useFetchUser();
@@ -12,7 +16,13 @@ function Dashboard() {
 
   const profile = data.userProfile.profile;
   const statistics = data.userProfile.statistics;
+  const activities = data.userActivity;
   const weekDate = getWeekRange();
+  const formatOptions = {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+  };
 
   return (
     <div className={styles.dashboard}>
@@ -33,7 +43,8 @@ function Dashboard() {
       <div className={styles.sectionWeekPerf}>
         <h2 className={`heading-4`}>Cette semaine</h2>
         <p className={`body-large ${styles.weekDate}`}>
-          Du {weekDate.start} au {weekDate.end}
+          Du {weekDate.start.toLocaleDateString("fr-FR", formatOptions)} au{" "}
+          {weekDate.end.toLocaleDateString("fr-FR", formatOptions)}
         </p>
         <div className={styles.weeklyGraphContainer}>
           <div className={styles.goals}></div>
@@ -42,7 +53,7 @@ function Dashboard() {
               <p className={`body-default ${styles.label}`}>Durée d'activité</p>
               <p>
                 <span className={`heading-4 ${styles.dataBlueStrong}`}>
-                  140{" "}
+                  {`${getCurrentWeekActiveTime(activities)} `}
                 </span>
                 <span className={`body-large ${styles.dataBlueLight}`}>
                   minutes
@@ -53,7 +64,7 @@ function Dashboard() {
               <p className={`body-default ${styles.label}`}>Distance</p>
               <p>
                 <span className={`heading-4 ${styles.dataRedStrong}`}>
-                  21.7{" "}
+                  {`${getCurrentWeekDistance(activities)} `}
                 </span>
                 <span className={`body-large ${styles.dataRedLight}`}>
                   kilomètres
