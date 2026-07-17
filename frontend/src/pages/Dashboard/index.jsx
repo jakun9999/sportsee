@@ -7,6 +7,7 @@ import { getWeekRange } from "../../utils/date";
 import {
   getCurrentWeekDistance,
   getCurrentWeekActiveTime,
+  getTotalDistance,
 } from "../../utils/stats";
 
 function Dashboard() {
@@ -29,7 +30,7 @@ function Dashboard() {
       <LongProfile
         firstName={profile.firstName}
         lastName={profile.lastName}
-        distance={statistics.totalDistance}
+        distance={getTotalDistance(activities)}
         photo={profile.profilePicture}
         createdAt={profile.createdAt}
       />
