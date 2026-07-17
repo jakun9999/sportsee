@@ -12,6 +12,17 @@ export const formatToLongDate = (dateString) => {
   }).format(date);
 };
 
+export const formatToShortDate = (dateString) => {
+  if (!dateString) return "";
+  const date = new Date(`${dateString}T00:00:00`);
+
+  return new Intl.DateTimeFormat("fr-FR", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  }).format(date);
+};
+
 // Generate start and end date of the current week
 // in an object with 2 strings
 export const getWeekRange = (dateInput = new Date()) => {

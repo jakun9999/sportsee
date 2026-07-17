@@ -1,3 +1,17 @@
-.testClass {
-  color: red;
+.summaryCard {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  gap: 19px;
+  padding-left: 30px;
+  width: 278px;
+  height: 103px;
+  border-radius: 10px;
+  background: var(--color-blue-strong);
+  color: var(--color-white);
+}
+
+.unit {
+  color: var(--color-blue-light);
 }

@@ -1,3 +1,32 @@
-.testClass {
-  color: red;
+.shortProfile {
+  height: 165px;
+  width: 508px;
+  background: var(--color-white);
+  display: flex;
+  flex-direction: row;
+  border-radius: 10px;
+  justify-content: start;
+  align-items: center;
+  padding-left: 32px;
+  flex-shrink: 0;
+}
+
+.name {
+  color: var(--color-back);
+}
+
+.grayedText {
+  color: var(--color-gray-strong);
+}
+.sectionLeft {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 24px;
+}
+
+.subSection {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }

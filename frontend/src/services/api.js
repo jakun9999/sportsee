@@ -7,7 +7,7 @@ export const getUserProfile = async () => {
 };
 
 export const getUserActivity = async () => {
-  const sessions = USER_ACTIVITY[0];
+  const sessions = USER_ACTIVITY;
   if (!sessions)
     throw new Error(
       "Impossible de charger les données d'activité de l'utilisateur",
