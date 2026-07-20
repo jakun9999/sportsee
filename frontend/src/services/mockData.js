@@ -1097,4 +1097,59 @@ export const USER_ACTIVITY = [
     },
     caloriesBurned: 590,
   },
+  {
+    date: "2026-07-20",
+    distance: 7.5,
+    duration: 45,
+    heartRate: {
+      min: 139,
+      max: 178,
+      average: 161,
+    },
+    caloriesBurned: 590,
+  },
+  {
+    date: "2026-07-21",
+    distance: 7.5,
+    duration: 45,
+    heartRate: {
+      min: 65,
+      max: 155,
+      average: 120,
+    },
+    caloriesBurned: 590,
+  },
+  {
+    date: "2026-07-22",
+    distance: 7.5,
+    duration: 45,
+    heartRate: {
+      min: 139,
+      max: 178,
+      average: 161,
+    },
+    caloriesBurned: 590,
+  },
+  {
+    date: "2026-07-23",
+    distance: 7.5,
+    duration: 45,
+    heartRate: {
+      min: 55,
+      max: 196,
+      average: 130,
+    },
+    caloriesBurned: 590,
+  },
+  {
+    date: "2026-07-25",
+    distance: 7.5,
+    duration: 45,
+    heartRate: {
+      min: 70,
+      max: 178,
+      average: 160,
+    },
+    caloriesBurned: 590,
+  },
 ];

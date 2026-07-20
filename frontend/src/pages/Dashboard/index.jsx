@@ -4,6 +4,7 @@ import { useFetchUser } from "../../hooks/useFetchUser";
 import Header from "../../components/Header";
 import LongProfile from "../../components/LongProfile";
 import WeekDistanceGraph from "../../components/WeekDistanceGraph";
+import WeekBpmGraph from "../../components/WeekBpmGraph";
 import { getWeekRange } from "../../utils/date";
 import {
   getCurrentWeekDistance,
@@ -40,7 +41,7 @@ function Dashboard() {
         <h2 className={`heading-4`}>Vos dernières performances</h2>
         <div className={styles.perfGraphContainer}>
           <WeekDistanceGraph activities={activities} />
-          <div className={styles.lastBpm}></div>
+          <WeekBpmGraph activities={activities} />
         </div>
       </div>
       <div className={styles.sectionWeekPerf}>

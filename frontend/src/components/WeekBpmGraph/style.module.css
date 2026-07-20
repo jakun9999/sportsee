@@ -1,3 +1,74 @@
-.testClass {
-  color: red;
+.weekBpmGraph {
+  width: 583px;
+  height: 484px;
+  background: var(--color-white);
+  border-radius: 10px;
+  padding-top: 16px;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 48px;
+}
+
+.average {
+  color: var(--color-red-strong);
+}
+
+.selector {
+  display: flex;
+  flex-direction: row;
+  gap: 6px;
+  align-items: center;
+  min-width: 156px;
+}
+.period {
+  color: var(--color-black);
+}
+
+.grayStrong {
+  color: var(--color-gray-strong);
+}
+
+.chart {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  margin-top: 40px;
+  width: 503px;
+  height: calc(307px + 18px);
+}
+
+.info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: start;
+  gap: 19px;
+  margin-left: 5px;
+}
+
+.averageBpm {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: start;
+}
+
+.bpm {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: start;
+  gap: 3.5px;
+  color: var(--color-gray-strong);
+}
+
+.averageBpmDot {
+  color: #b6bdfc;
 }
