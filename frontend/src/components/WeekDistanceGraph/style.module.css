@@ -65,4 +65,6 @@
   align-items: center;
   justify-content: start;
   gap: 3.5px;
+  color: var(--color-gray-strong);
+  margin-left: 5px;
 }

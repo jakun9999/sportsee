@@ -29,40 +29,62 @@ const CustomTooltip = ({ active, payload }) => {
 };
 
 function WeekDistanceGraph({ activities = [] }) {
-  // By default the end date is today
-  const [endDate, setEndDate] = useState(new Date());
+  // By default the end date the sunday of current week
+  // at 23:59:59:999 so that we display full weeks in
+  // the graphics.
+  const [endDate, setEndDate] = useState(() => {
+    const today = new Date();
+    const dayOfWeek = today.getDay();
+    const daysUntilSunday = dayOfWeek === 0 ? 0 : 7 - dayOfWeek;
+
+    const sunday = new Date(today);
+    sunday.setDate(today.getDate() + daysUntilSunday);
+    sunday.setHours(23, 59, 59, 999);
+    return sunday;
+  });
+
   const [isHovered, setIsHovered] = useState(false);
 
   const { currentPeriodActivities, periodLabel, averageKm } = useMemo(() => {
     const startDate = new Date(endDate);
-    startDate.setDate(endDate.getDate() - 28);
+    startDate.setDate(endDate.getDate() - 27);
 
     // Formating date for the header information
     const options = { day: "numeric", month: "short" };
     const label = `${startDate.toLocaleDateString("fr-FR", options)} - ${endDate.toLocaleDateString("fr-FR", options)}`;
 
     const weeks = [
-      { name: "S1", km: 0, start: new Date(startDate), label: "" },
+      {
+        name: "S1",
+        km: 0,
+        start: new Date(startDate),
+        end: new Date(startDate).setDate(startDate.getDate() + 6),
+        label: "",
+      },
       {
         name: "S2",
         km: 0,
         start: new Date(startDate).setDate(startDate.getDate() + 7),
+        end: new Date(startDate).setDate(startDate.getDate() + (7 + 6)),
         label: "",
       },
       {
         name: "S3",
         km: 0,
         start: new Date(startDate).setDate(startDate.getDate() + 14),
+        end: new Date(startDate).setDate(startDate.getDate() + (14 + 6)),
         label: "",
       },
       {
         name: "S4",
         km: 0,
         start: new Date(startDate).setDate(startDate.getDate() + 21),
+        end: new Date(startDate).setDate(startDate.getDate() + (21 + 6)),
         label: "",
       },
     ];
     weeks.forEach((w) => (w.start = new Date(w.start)));
+    weeks.forEach((w) => (w.end = new Date(w.end)));
     let totalKm = 0;
 
     // Retrieving km total and by week
@@ -85,7 +107,7 @@ function WeekDistanceGraph({ activities = [] }) {
     const formatedWeeksData = weeks.map((w) => ({
       name: w.name,
       km: w.km.toFixed(1),
-      period: `${formatTooltipDate(w.start)} au ${formatTooltipDate(w.start)}`,
+      period: `${formatTooltipDate(w.start)} au ${formatTooltipDate(w.end)}`,
     }));
 
     const average = Math.round(totalKm / 4);
@@ -150,13 +172,13 @@ function WeekDistanceGraph({ activities = [] }) {
             />
             <XAxis
               dataKey="name"
-              axisLine={{ stroke: "#cbd5e0" }}
+              axisLine={{ stroke: "var(--color-gray-medium" }}
               tickLine={false}
               tick={{ fill: "#707070", fontSize: 12 }}
               dy={10}
             />
             <YAxis
-              axisLine={false}
+              axisLine={{ stroke: "var(--color-gray-medium" }}
               tickLine={false}
               tick={{ fill: "#707070", fontSize: 10 }}
               domain={[0, "auto"]}
@@ -185,7 +207,7 @@ function WeekDistanceGraph({ activities = [] }) {
               backgroundColor: "#7987FF",
             }}
           ></span>
-          <span>Km</span>
+          <span className="body-small">Km</span>
         </div>
       </div>
     </div>
