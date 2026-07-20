@@ -5,11 +5,13 @@ import Header from "../../components/Header";
 import LongProfile from "../../components/LongProfile";
 import WeekDistanceGraph from "../../components/WeekDistanceGraph";
 import WeekBpmGraph from "../../components/WeekBpmGraph";
+import WeekActivity from "../../components/WeekActivity";
 import { getWeekRange } from "../../utils/date";
 import {
   getCurrentWeekDistance,
   getCurrentWeekActiveTime,
   getTotalDistance,
+  getCurrentWeekActivities,
 } from "../../utils/stats";
 import { act } from "react";
 
@@ -51,7 +53,10 @@ function Dashboard() {
           {weekDate.end.toLocaleDateString("fr-FR", formatOptions)}
         </p>
         <div className={styles.weeklyGraphContainer}>
-          <div className={styles.goals}></div>
+          <WeekActivity
+            goal={profile.weeklyGoal}
+            activities={getCurrentWeekActivities(activities)}
+          />
           <div className={styles.summaryContainer}>
             <div className={styles.time}>
               <p className={`body-default ${styles.label}`}>Durée d'activité</p>

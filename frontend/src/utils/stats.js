@@ -37,6 +37,16 @@ export const getCurrentWeekDistance = (activities = []) => {
   }, 0);
 };
 
+// returns number of activities for current week
+export const getCurrentWeekActivities = (activities = []) => {
+  if (!Array.isArray(activities)) return 0;
+
+  const { start, end } = getWeekRange(new Date());
+  const weeklyActivities = getActivitiesByTime(activities, start, end);
+
+  return weeklyActivities.length;
+};
+
 // Return an object with hours and minutes based
 // on a total duration { hours: '25h', minutes: '15min' }
 export const getTotalRunningTime = (activities = []) => {

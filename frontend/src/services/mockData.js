@@ -4,6 +4,7 @@ export const USER_DATA = [
       firstName: "Sophie",
       lastName: "Martin",
       createdAt: "2025-01-01",
+      weeklyGoal: 2,
       age: 32,
       gender: "female",
       weight: 60,

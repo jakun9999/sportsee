@@ -51,13 +51,6 @@ h2 {
   margin-top: 32px;
 }
 
-.goals {
-  width: 450px;
-  height: 342px;
-  background: var(--color-blue-strong);
-  border-radius: 10px;
-}
-
 .summaryContainer {
   width: 572px;
   height: 342px;
