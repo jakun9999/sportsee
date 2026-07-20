@@ -17,7 +17,7 @@ function Home() {
       initial="initial"
       animate="animate"
       exit="exit"
-      transition={{ duration: 1.5, ease: "easeInOut" }}
+      transition={{ duration: 1, ease: "easeInOut" }}
     >
       <div className={styles.home}>
         <div className={styles.leftPane}>

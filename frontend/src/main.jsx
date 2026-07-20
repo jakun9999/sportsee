@@ -1,6 +1,11 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import Home from "./pages/Home";
 import Layout from "./components/Layout";
@@ -9,19 +14,28 @@ import Profile from "./pages/Profile";
 import Error from "./pages/Error";
 import "./index.css";
 
+function AnimatedRoutes() {
+  const location = useLocation();
+
+  return (
+    <AnimatePresence mode="wait">
+      {/* On passe la location et la clé unique pour forcer Framer Motion à détecter le changement de page */}
+      <Routes location={location} key={location.pathname}>
+        <Route path="/" element={<Home />} />
+        <Route element={<Layout />}>
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/profile" element={<Profile />} />
+        </Route>
+        <Route path="*" element={<Error />} />
+      </Routes>
+    </AnimatePresence>
+  );
+}
+
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <AnimatePresence mode="wait">
-      <Router>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route element={<Layout />}>
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/profile" element={<Profile />} />
-          </Route>
-          <Route path="*" element={<Error />} />
-        </Routes>
-      </Router>
-    </AnimatePresence>
+    <Router>
+      <AnimatedRoutes />
+    </Router>
   </StrictMode>,
 );
