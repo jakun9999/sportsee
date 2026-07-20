@@ -12,6 +12,8 @@ import Layout from "./components/Layout";
 import Dashboard from "./pages/Dashboard";
 import Profile from "./pages/Profile";
 import Error from "./pages/Error";
+import { AuthProvider } from "./contexts/AuthContext";
+import ProtectedRoute from "./components/ProtectedRoute";
 import "./index.css";
 
 function AnimatedRoutes() {
@@ -22,9 +24,11 @@ function AnimatedRoutes() {
       {/* On passe la location et la clé unique pour forcer Framer Motion à détecter le changement de page */}
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<Home />} />
-        <Route element={<Layout />}>
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/profile" element={<Profile />} />
+        <Route element={<ProtectedRoute />}>
+          <Route element={<Layout />}>
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/profile" element={<Profile />} />
+          </Route>
         </Route>
         <Route path="*" element={<Error />} />
       </Routes>
@@ -35,7 +39,9 @@ function AnimatedRoutes() {
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <Router>
-      <AnimatedRoutes />
+      <AuthProvider>
+        <AnimatedRoutes />
+      </AuthProvider>
     </Router>
   </StrictMode>,
 );

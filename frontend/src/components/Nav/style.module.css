@@ -24,6 +24,11 @@
   text-decoration: none;
   color: var(--color-blue-strong);
   cursor: pointer;
+  color: var(--color-black);
+  padding: 0;
+  border: 0;
+  background: var(--color-white);
+  font: var(--body-default);
 }
 
 .separator {
