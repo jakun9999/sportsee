@@ -26,21 +26,24 @@ export const formatToShortDate = (dateString) => {
 // Generate start and end date of the current week
 // in an object with 2 strings
 export const getWeekRange = (dateInput = new Date()) => {
-  const date = new Date(dateInput);
-  const currentDay = date.getDay();
+  const targetDate = dateInput;
+  const dayOfWeek = targetDate.getDay(); // 0 = Dimanche, 1 = Lundi, etc.
 
-  const daysToMonday = currentDay === 0 ? -6 : 1 - currentDay;
+  // Trouver le lundi de la semaine en cours
+  // Si c'est dimanche (0), on recule de 6 jours. Sinon on recule de (dayOfWeek - 1)
+  const daysToMonday = dayOfWeek === 0 ? 6 : dayOfWeek - 1;
+  const start = new Date(targetDate);
+  start.setDate(targetDate.getDate() - daysToMonday);
+  start.setHours(0, 0, 0, 0);
 
-  const monday = new Date(date);
-  monday.setDate(date.getDate() + daysToMonday);
+  // Trouver le dimanche de la semaine en cours
+  // Si c'est dimanche (0), on ajoute 0. Sinon on ajoute (7 - dayOfWeek)
+  const daysToSunday = dayOfWeek === 0 ? 0 : 7 - dayOfWeek;
+  const end = new Date(targetDate);
+  end.setDate(targetDate.getDate() + daysToSunday);
+  end.setHours(23, 59, 59, 999);
 
-  const sunday = new Date(monday);
-  sunday.setDate(monday.getDate() + 6);
-
-  return {
-    start: monday,
-    end: sunday,
-  };
+  return { start, end };
 };
 
 // Used for graph tooltips (to display 01.06 for the dates during
