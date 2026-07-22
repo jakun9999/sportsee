@@ -26,10 +26,14 @@ const RenderCustomLabel = ({ cx, cy, outerRadius, name, fill, index }) => {
         style={{ fontSize: "10px", fontFamily: "inter", fontWeight: 400 }}
       >
         <tspan>
-          <tspan fill={fill} style={{ fontSize: "18px", fontWeight: "bold" }}>
+          <tspan
+            fill={fill}
+            dy="-1.5px"
+            style={{ fontSize: "18px", fontWeight: "bold" }}
+          >
             •{" "}
           </tspan>
-          {name}
+          <tspan dy="1.5px">{name}</tspan>
         </tspan>
       </text>
     </g>
