@@ -1,6 +1,5 @@
 import styles from "./style.module.css";
 import { Navigate } from "react-router-dom";
-import { useFetchUser } from "../../hooks/useFetchUser";
 import Header from "../../components/Header";
 import LongProfile from "../../components/LongProfile";
 import WeekDistanceGraph from "../../components/WeekDistanceGraph";
@@ -10,11 +9,10 @@ import { getWeekRange } from "../../utils/date";
 import {
   getCurrentWeekDistance,
   getCurrentWeekActiveTime,
-  getTotalDistance,
-  getCurrentWeekActivities,
 } from "../../utils/stats";
 import { act } from "react";
 import { motion } from "framer-motion";
+import { useData } from "../../contexts/DataContext";
 
 const pageVariants = {
   initial: { opacity: 0, y: 0 }, // Départ : invisible et légèrement bas
@@ -23,14 +21,14 @@ const pageVariants = {
 };
 
 function Dashboard() {
-  const { data, isLoading, error } = useFetchUser();
+  const { profile, statistics, activities, isLoading, error } = useData();
   if (isLoading) return <p>Chargement</p>;
   if (error) return <Navigate to="/error" />;
 
-  const profile = data.userProfile.profile;
-  const statistics = data.userProfile.statistics;
-  const activities = data.userActivity;
+  // Current week (from monday to sunday)
   const weekDate = getWeekRange();
+
+  // format option for dates
   const formatOptions = {
     day: "2-digit",
     month: "2-digit",
@@ -46,18 +44,12 @@ function Dashboard() {
       transition={{ duration: 1, ease: "easeInOut" }}
     >
       <div className={styles.dashboard}>
-        <LongProfile
-          firstName={profile.firstName}
-          lastName={profile.lastName}
-          distance={getTotalDistance(activities)}
-          photo={profile.profilePicture}
-          createdAt={profile.createdAt}
-        />
+        <LongProfile />
         <div className={styles.sectionLastPerf}>
           <h2 className={`heading-4`}>Vos dernières performances</h2>
           <div className={styles.perfGraphContainer}>
-            <WeekDistanceGraph activities={activities} />
-            <WeekBpmGraph activities={activities} />
+            <WeekDistanceGraph />
+            <WeekBpmGraph />
           </div>
         </div>
         <div className={styles.sectionWeekPerf}>
@@ -67,10 +59,7 @@ function Dashboard() {
             {weekDate.end.toLocaleDateString("fr-FR", formatOptions)}
           </p>
           <div className={styles.weeklyGraphContainer}>
-            <WeekActivity
-              goal={profile.weeklyGoal}
-              activities={getCurrentWeekActivities(activities)}
-            />
+            <WeekActivity />
             <div className={styles.summaryContainer}>
               <div className={styles.time}>
                 <p className={`body-default ${styles.label}`}>
@@ -78,7 +67,7 @@ function Dashboard() {
                 </p>
                 <p>
                   <span className={`heading-4 ${styles.dataBlueStrong}`}>
-                    {`${getCurrentWeekActiveTime(activities)} `}
+                    {`${getCurrentWeekActiveTime()} `}
                   </span>
                   <span className={`body-large ${styles.dataBlueLight}`}>
                     minutes
@@ -89,7 +78,7 @@ function Dashboard() {
                 <p className={`body-default ${styles.label}`}>Distance</p>
                 <p>
                   <span className={`heading-4 ${styles.dataRedStrong}`}>
-                    {`${getCurrentWeekDistance(activities)} `}
+                    {`${getCurrentWeekDistance()} `}
                   </span>
                   <span className={`body-large ${styles.dataRedLight}`}>
                     kilomètres

@@ -1,6 +1,9 @@
 import styles from "./style.module.css";
 import React from "react";
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend } from "recharts";
+import { getCurrentWeekActivitiesCount } from "../../utils/stats";
+import { useData } from "../../contexts/DataContext";
+import { useAuth } from "../../contexts/AuthContext";
 
 const RenderCustomLabel = ({ cx, cy, outerRadius, name, fill, index }) => {
   const RADIAN = Math.PI / 180;
@@ -54,14 +57,22 @@ const RenderCustomLabel = ({ cx, cy, outerRadius, name, fill, index }) => {
   );
 };
 
-function WeekActivity({ goal = 0, activities = 0 }) {
+function WeekActivity() {
+  const { profile, activities } = useData();
+  const { weeklyGoal } = useAuth();
+  const activityCount = getCurrentWeekActivitiesCount();
+
   const data = [
     {
-      name: `${activities} réalisées`,
-      value: activities,
+      name: `${activityCount} réalisées`,
+      value: activityCount,
       color: "var(--color-blue-strong",
     }, // Bleu foncé
-    { name: `${goal} restants`, value: goal, color: "var(--color-blue-light" }, // Bleu clair pastel
+    {
+      name: `${weeklyGoal} restants`,
+      value: weeklyGoal,
+      color: "var(--color-blue-light",
+    }, // Bleu clair pastel
   ];
 
   return (
@@ -69,11 +80,11 @@ function WeekActivity({ goal = 0, activities = 0 }) {
       <div className={styles.main}>
         <h3>
           <span className={`heading-3 ${styles.activities}`}>
-            x{activities}
+            x{activityCount}
           </span>
           <span className={`body-large ${styles.goals}`}>
             {" "}
-            sur un objectif de {goal}
+            sur un objectif de {weeklyGoal}
           </span>
         </h3>
         <p className={`body-default ${styles.label}`}>

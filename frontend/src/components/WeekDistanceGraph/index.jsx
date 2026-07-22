@@ -10,6 +10,7 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
+import { useData } from "../../contexts/DataContext";
 
 const CustomTooltip = ({ active, payload }) => {
   if (active && payload && payload.length) {
@@ -24,7 +25,8 @@ const CustomTooltip = ({ active, payload }) => {
   return null;
 };
 
-function WeekDistanceGraph({ activities = [] }) {
+function WeekDistanceGraph() {
+  const { activities } = useData();
   const [endDate, setEndDate] = useState(() => {
     const today = new Date();
     const dayOfWeek = today.getDay();

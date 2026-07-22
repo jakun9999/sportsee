@@ -9,8 +9,10 @@ import {
   CartesianGrid,
   ResponsiveContainer,
 } from "recharts";
+import { useData } from "../../contexts/DataContext";
 
-function WeekBpmGraph({ activities = [] }) {
+function WeekBpmGraph() {
+  const { activities } = useData();
   const [endDate, setEndDate] = useState(() => {
     const today = new Date();
     const dayOfWeek = today.getDay();

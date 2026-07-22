@@ -15,6 +15,7 @@ import Error from "./pages/Error";
 import { AuthProvider } from "./contexts/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
 import "./index.css";
+import { DataProvider } from "./contexts/DataContext";
 
 function AnimatedRoutes() {
   const location = useLocation();
@@ -40,7 +41,9 @@ createRoot(document.getElementById("root")).render(
   <StrictMode>
     <Router>
       <AuthProvider>
-        <AnimatedRoutes />
+        <DataProvider>
+          <AnimatedRoutes />
+        </DataProvider>
       </AuthProvider>
     </Router>
   </StrictMode>,

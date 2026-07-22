@@ -36,6 +36,9 @@ router.post("/api/login", (req, res) => {
   return res.json({
     token,
     userId: user.id,
+    // ML comment: WeeklyGoal is missing whereas it is required in
+    // frontend
+    weeklyGoal: user.weeklyGoal,
   });
 });
 
@@ -50,14 +53,13 @@ router.get("/api/user-info", authenticateToken, (req, res) => {
   const runningData = user.runningData;
 
   // Calculate overall statistics
-  const totalDistance = runningData.reduce(
-    (sum, session) => sum + session.distance,
-    0
-  ).toFixed(1);
+  const totalDistance = runningData
+    .reduce((sum, session) => sum + session.distance, 0)
+    .toFixed(1);
   const totalSessions = runningData.length;
   const totalDuration = runningData.reduce(
     (sum, session) => sum + session.duration,
-    0
+    0,
   );
 
   // Extract user profile information
@@ -87,9 +89,11 @@ router.get("/api/user-info", authenticateToken, (req, res) => {
  */
 router.get("/api/user-activity", authenticateToken, (req, res) => {
   const { startWeek, endWeek } = req.query;
-  
+
   if (!startWeek || !endWeek) {
-    return res.status(400).json({ message: "startWeek and endWeek are required" });
+    return res
+      .status(400)
+      .json({ message: "startWeek and endWeek are required" });
   }
 
   const user = getUserById(req.user.userId);
@@ -103,16 +107,18 @@ router.get("/api/user-activity", authenticateToken, (req, res) => {
   const startDate = new Date(startWeek);
   const endDate = new Date(endWeek);
   const now = new Date();
-  
+
   // Filter sessions between startWeek and endWeek, excluding future dates
   const filteredSessions = runningData.filter((session) => {
     const sessionDate = new Date(session.date);
-    return sessionDate >= startDate && sessionDate <= endDate && sessionDate <= now;
+    return (
+      sessionDate >= startDate && sessionDate <= endDate && sessionDate <= now
+    );
   });
 
   // Sort by date ascending
-  const sortedSessions = filteredSessions.sort((a, b) => 
-    new Date(a.date) - new Date(b.date)
+  const sortedSessions = filteredSessions.sort(
+    (a, b) => new Date(a.date) - new Date(b.date),
   );
 
   return res.json(sortedSessions);

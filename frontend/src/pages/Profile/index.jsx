@@ -1,6 +1,5 @@
 import styles from "./style.module.css";
 import { Navigate } from "react-router-dom";
-import { useFetchUser } from "../../hooks/useFetchUser";
 import Header from "../../components/Header";
 import ShortProfile from "../../components/ShortProfile";
 import SummaryCard from "../../components/SummaryCard";
@@ -12,6 +11,7 @@ import {
   getTotalDistance,
 } from "../../utils/stats";
 import { motion } from "framer-motion";
+import { useData } from "../../contexts/DataContext";
 
 const pageVariants = {
   initial: { opacity: 0, y: 0 }, // Départ : invisible et légèrement bas
@@ -20,18 +20,15 @@ const pageVariants = {
 };
 
 function Profile() {
-  const { data, isLoading, error } = useFetchUser();
+  const { profile, statistics, activities, isLoading, error } = useData();
   if (isLoading) return <p>Chargement</p>;
   if (error) return <Navigate to="/error" />;
 
-  const profile = data.userProfile.profile;
-  const statistics = data.userProfile.statistics;
-  const activities = data.userActivity;
-  const distance = getTotalDistance(data.userActivity);
+  const distance = getTotalDistance(activities);
   const date = formatToShortDate(profile.createdAt);
-  const duration = getTotalRunningTime(data.userActivity);
-  const days = getTotalDays(data.userActivity, profile.createdAt);
-  const calories = getTotalCaloriesBurned(data.userActivity);
+  const duration = getTotalRunningTime(activities);
+  const days = getTotalDays(profile.createdAt);
+  const calories = getTotalCaloriesBurned(activities);
 
   return (
     <motion.div
@@ -43,13 +40,7 @@ function Profile() {
     >
       <div className={styles.profile}>
         <div className={styles.leftPane}>
-          <ShortProfile
-            firstName={profile.firstName}
-            lastName={profile.lastName}
-            distance={statistics.totalDistance}
-            photo={profile.profilePicture}
-            createdAt={profile.createdAt}
-          />
+          <ShortProfile />
           <div className={styles.profileDetails}>
             <h2
               className={`heading-4 ${styles.textBlack} ${styles.profileTitle}`}
