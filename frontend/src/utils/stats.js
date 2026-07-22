@@ -1,10 +1,8 @@
 import { getWeekRange } from "./date";
-import { useData } from "../contexts/DataContext";
 
 // Returns activities between 2 dates
-export function getActivitiesByTime(start, end) {
-  const { activities } = useData();
-  if (!Array.isArray(activities)) return 0;
+export function getActivitiesByTime(activities = [], start, end) {
+  if (!Array.isArray(activities)) return [];
 
   const selectedActivities = activities.filter((activity) => {
     const activityDate = new Date(activity.date);
@@ -16,12 +14,11 @@ export function getActivitiesByTime(start, end) {
 }
 
 // Returns activity time for current week
-export function getCurrentWeekActiveTime() {
-  const { activities } = useData();
+export function getCurrentWeekActiveTime(activities = []) {
   if (!Array.isArray(activities)) return 0;
 
   const { start, end } = getWeekRange(new Date());
-  const weeklyActivities = getActivitiesByTime(start, end);
+  const weeklyActivities = getActivitiesByTime(activities, start, end);
 
   return weeklyActivities.reduce((acc, current) => {
     return acc + current.duration;
@@ -29,12 +26,11 @@ export function getCurrentWeekActiveTime() {
 }
 
 // Returns distance for current week
-export function getCurrentWeekDistance() {
-  const { activities } = useData();
+export function getCurrentWeekDistance(activities = []) {
   if (!Array.isArray(activities)) return 0;
 
   const { start, end } = getWeekRange(new Date());
-  const weeklyActivities = getActivitiesByTime(start, end);
+  const weeklyActivities = getActivitiesByTime(activities, start, end);
 
   return weeklyActivities.reduce((acc, current) => {
     return acc + current.distance;
@@ -42,20 +38,18 @@ export function getCurrentWeekDistance() {
 }
 
 // returns number of activities for current week
-export function getCurrentWeekActivitiesCount() {
-  const { activities } = useData();
+export function getCurrentWeekActivitiesCount(activities = []) {
   if (!Array.isArray(activities)) return 0;
 
   const { start, end } = getWeekRange(new Date());
-  const weeklyActivities = getActivitiesByTime(start, end);
+  const weeklyActivities = getActivitiesByTime(activities, start, end);
 
   return weeklyActivities.length;
 }
 
 // Return an object with hours and minutes based
 // on a total duration { hours: '25h', minutes: '15min' }
-export function getTotalRunningTime() {
-  const { activities } = useData();
+export function getTotalRunningTime(activities = []) {
   if (!Array.isArray(activities)) {
     return { hours: "0h", minutes: "0min" };
   }
@@ -70,8 +64,7 @@ export function getTotalRunningTime() {
 }
 
 // Returns the total distance for all the sessions
-export function getTotalDistance() {
-  const { activities } = useData();
+export function getTotalDistance(activities = []) {
   if (!Array.isArray(activities)) return 0;
 
   const distance = activities.reduce((acc, current) => {
@@ -81,16 +74,14 @@ export function getTotalDistance() {
   return distance;
 }
 
-export function getTotalCaloriesBurned() {
-  const { activities } = useData();
+export function getTotalCaloriesBurned(activities = []) {
   if (!Array.isArray(activities)) return 0;
 
   return activities.reduce((acc, current) => acc + current.caloriesBurned, 0);
 }
 
 // Returns the total of days with and without activities
-export function getTotalDays(registeringDate) {
-  const { activities } = useData();
+export function getTotalDays(activities = [], registeringDate) {
   // Checking if input parameters are incorrect
   if (!registeringDate || !Array.isArray(activities)) return 0;
 

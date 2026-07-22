@@ -4,11 +4,17 @@ import { formatToLongDate } from "../../utils/date";
 import { getTotalDistance } from "../../utils/stats";
 import { useData } from "../../contexts/DataContext";
 
-function LongProfile({ photo, firstName, lastName, createdAt, distance }) {
+function LongProfile() {
   // Formating profile creation date to local format day number month year
   // for example jeudi 1 juin 2025
 
-  const { profile, activities } = useData();
+  const { profile, activities, isLoading } = useData();
+
+  // Si les données sont en cours de chargement ou absentes
+  if (isLoading || !profile || !activities) {
+    return <div className={styles.longProfile}>Chargement du profil...</div>;
+  }
+
   const formatedDate = formatToLongDate(profile.createdAt);
 
   return (

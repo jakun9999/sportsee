@@ -10,6 +10,7 @@ const pageVariants = {
 function Error() {
   return (
     <motion.div
+      key="error"
       variants={pageVariants}
       initial="initial"
       animate="animate"

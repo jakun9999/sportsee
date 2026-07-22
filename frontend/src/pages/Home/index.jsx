@@ -13,6 +13,7 @@ const pageVariants = {
 function Home() {
   return (
     <motion.div
+      key=""
       variants={pageVariants}
       initial="initial"
       animate="animate"

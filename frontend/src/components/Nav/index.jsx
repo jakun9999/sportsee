@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 import styles from "./style.module.css";
 
 function Nav() {
-  const { logout, userId } = useAuth();
+  const { logout } = useAuth();
   const navigate = useNavigate();
 
   const handleLogout = () => {

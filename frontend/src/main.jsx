@@ -23,7 +23,7 @@ function AnimatedRoutes() {
   return (
     <AnimatePresence mode="wait">
       {/* On passe la location et la clé unique pour forcer Framer Motion à détecter le changement de page */}
-      <Routes location={location} key={location.pathname}>
+      <Routes location={location}>
         <Route path="/" element={<Home />} />
         <Route element={<ProtectedRoute />}>
           <Route element={<Layout />}>

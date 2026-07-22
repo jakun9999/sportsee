@@ -21,73 +21,89 @@ const pageVariants = {
 
 function Profile() {
   const { profile, statistics, activities, isLoading, error } = useData();
-  if (isLoading) return <p>Chargement</p>;
   if (error) return <Navigate to="/error" />;
 
-  const distance = getTotalDistance(activities);
-  const date = formatToShortDate(profile.createdAt);
-  const duration = getTotalRunningTime(activities);
-  const days = getTotalDays(profile.createdAt);
-  const calories = getTotalCaloriesBurned(activities);
+  const isReady = !isLoading && profile && statistics && activities;
+
+  const distance = isReady ? getTotalDistance(activities) : 0;
+  const date = isReady ? formatToShortDate(profile.createdAt) : "";
+  const duration = isReady
+    ? getTotalRunningTime(activities)
+    : { hours: 0, minutes: 0 };
+  const days = isReady
+    ? getTotalDays(activities, profile.createdAt)
+    : { rest: 0, sessions: 0 };
+  const calories = isReady ? getTotalCaloriesBurned(activities) : 0;
 
   return (
     <motion.div
+      key="profile"
       variants={pageVariants}
       initial="initial"
       animate="animate"
       exit="exit"
       transition={{ duration: 1, ease: "easeInOut" }}
     >
-      <div className={styles.profile}>
-        <div className={styles.leftPane}>
-          <ShortProfile />
-          <div className={styles.profileDetails}>
-            <h2
-              className={`heading-4 ${styles.textBlack} ${styles.profileTitle}`}
-            >
-              Votre profil
+      {!isReady ? (
+        <p>Chargement</p>
+      ) : (
+        <div className={styles.profile}>
+          <div className={styles.leftPane}>
+            <ShortProfile />
+            <div className={styles.profileDetails}>
+              <h2
+                className={`heading-4 ${styles.textBlack} ${styles.profileTitle}`}
+              >
+                Votre profil
+              </h2>
+              <div className={`body-large ${styles.details}`}>
+                <p>Âge : {profile.age}</p>
+                <p>Genre : {profile.genre === "male" ? "Homme" : "Femme"}</p>
+                <p>
+                  Taille :{" "}
+                  {`${Math.trunc(profile.height / 100)}m${profile.height % 100}`}
+                </p>
+                <p>Poids : {profile.weight}kg</p>
+              </div>
+            </div>
+          </div>
+          <div className={styles.statsTitle}>
+            <h2 className={`heading-4 ${styles.textBlack}`}>
+              Vos statistiques
             </h2>
-            <div className={`body-large ${styles.details}`}>
-              <p>Âge : {profile.age}</p>
-              <p>Genre : {profile.genre === "male" ? "Homme" : "Femme"}</p>
-              <p>
-                Taille :{" "}
-                {`${Math.trunc(profile.height / 100)}m${profile.height % 100}`}
-              </p>
-              <p>Poids : {profile.weight}kg</p>
+            <p className={`body-default ${styles.textGrayStrong}`}>
+              depuis le {date}
+            </p>
+            <div className={styles.stats}>
+              <SummaryCard
+                title="Temps total couru"
+                total={duration.hours}
+                unit={duration.minutes}
+              />
+              <SummaryCard
+                title="Calories brûlées"
+                total={calories}
+                unit="cal"
+              />
+              <SummaryCard
+                title="Distance totale parcourue"
+                total={distance}
+                unit="km"
+              />
+              <SummaryCard
+                title="Nombre de jours de repos"
+                total={days.rest}
+                unit={days.rest > 1 ? "jours" : "jour"}
+              />
+              <SummaryCard
+                title="Nombre de sessions"
+                total={days.sessions}
+                unit={days.sessions > 1 ? "sessions" : "session"}
+              />
             </div>
           </div>
         </div>
-        <div className={styles.statsTitle}>
-          <h2 className={`heading-4 ${styles.textBlack}`}>Vos statistiques</h2>
-          <p className={`body-default ${styles.textGrayStrong}`}>
-            depuis le {date}
-          </p>
-          <div className={styles.stats}>
-            <SummaryCard
-              title="Temps total couru"
-              total={duration.hours}
-              unit={duration.minutes}
-            />
-            <SummaryCard title="Calories brûlées" total={calories} unit="cal" />
-            <SummaryCard
-              title="Distance totale parcourue"
-              total={distance}
-              unit="km"
-            />
-            <SummaryCard
-              title="Nombre de jours de repos"
-              total={days.rest}
-              unit={days.rest > 1 ? "jours" : "jour"}
-            />
-            <SummaryCard
-              title="Nombre de sessions"
-              total={days.sessions}
-              unit={days.sessions > 1 ? "sessions" : "session"}
-            />
-          </div>
-        </div>
-      </div>
+      )}
     </motion.div>
   );
 }

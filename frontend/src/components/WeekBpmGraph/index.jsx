@@ -61,7 +61,8 @@ function WeekBpmGraph() {
 
       let totalBpm = [];
 
-      activities.forEach((activity) => {
+      const safeActivities = activities || [];
+      safeActivities.forEach((activity) => {
         const activityTime = new Date(activity.date).setHours(0, 0, 0, 0);
 
         // Comparaison de nombre à nombre (timestamp)

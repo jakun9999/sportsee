@@ -81,7 +81,8 @@ function WeekDistanceGraph() {
     let totalKm = 0;
 
     // 3. Boucle de tri sur les activités avec des comparaisons de nombres (timestamps)
-    activities.forEach((activity) => {
+    const safeActivities = activities || [];
+    safeActivities.forEach((activity) => {
       const activityTime = new Date(activity.date).getTime();
 
       if (activityTime >= startTime && activityTime <= endTime) {

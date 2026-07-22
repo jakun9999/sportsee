@@ -10,7 +10,6 @@ import {
   getCurrentWeekDistance,
   getCurrentWeekActiveTime,
 } from "../../utils/stats";
-import { act } from "react";
 import { motion } from "framer-motion";
 import { useData } from "../../contexts/DataContext";
 
@@ -22,8 +21,9 @@ const pageVariants = {
 
 function Dashboard() {
   const { profile, statistics, activities, isLoading, error } = useData();
-  if (isLoading) return <p>Chargement</p>;
   if (error) return <Navigate to="/error" />;
+
+  const isReady = !isLoading && profile && statistics && activities;
 
   // Current week (from monday to sunday)
   const weekDate = getWeekRange();
@@ -37,58 +37,63 @@ function Dashboard() {
 
   return (
     <motion.div
+      key="dashboard"
       variants={pageVariants}
       initial="initial"
       animate="animate"
       exit="exit"
       transition={{ duration: 1, ease: "easeInOut" }}
     >
-      <div className={styles.dashboard}>
-        <LongProfile />
-        <div className={styles.sectionLastPerf}>
-          <h2 className={`heading-4`}>Vos dernières performances</h2>
-          <div className={styles.perfGraphContainer}>
-            <WeekDistanceGraph />
-            <WeekBpmGraph />
+      {!isReady ? (
+        <p>Chargement</p>
+      ) : (
+        <div className={styles.dashboard}>
+          <LongProfile />
+          <div className={styles.sectionLastPerf}>
+            <h2 className={`heading-4`}>Vos dernières performances</h2>
+            <div className={styles.perfGraphContainer}>
+              <WeekDistanceGraph />
+              <WeekBpmGraph />
+            </div>
           </div>
-        </div>
-        <div className={styles.sectionWeekPerf}>
-          <h2 className={`heading-4`}>Cette semaine</h2>
-          <p className={`body-large ${styles.weekDate}`}>
-            Du {weekDate.start.toLocaleDateString("fr-FR", formatOptions)} au{" "}
-            {weekDate.end.toLocaleDateString("fr-FR", formatOptions)}
-          </p>
-          <div className={styles.weeklyGraphContainer}>
-            <WeekActivity />
-            <div className={styles.summaryContainer}>
-              <div className={styles.time}>
-                <p className={`body-default ${styles.label}`}>
-                  Durée d'activité
-                </p>
-                <p>
-                  <span className={`heading-4 ${styles.dataBlueStrong}`}>
-                    {`${getCurrentWeekActiveTime()} `}
-                  </span>
-                  <span className={`body-large ${styles.dataBlueLight}`}>
-                    minutes
-                  </span>
-                </p>
-              </div>
-              <div className={styles.distance}>
-                <p className={`body-default ${styles.label}`}>Distance</p>
-                <p>
-                  <span className={`heading-4 ${styles.dataRedStrong}`}>
-                    {`${getCurrentWeekDistance()} `}
-                  </span>
-                  <span className={`body-large ${styles.dataRedLight}`}>
-                    kilomètres
-                  </span>
-                </p>
+          <div className={styles.sectionWeekPerf}>
+            <h2 className={`heading-4`}>Cette semaine</h2>
+            <p className={`body-large ${styles.weekDate}`}>
+              Du {weekDate.start.toLocaleDateString("fr-FR", formatOptions)} au{" "}
+              {weekDate.end.toLocaleDateString("fr-FR", formatOptions)}
+            </p>
+            <div className={styles.weeklyGraphContainer}>
+              <WeekActivity />
+              <div className={styles.summaryContainer}>
+                <div className={styles.time}>
+                  <p className={`body-default ${styles.label}`}>
+                    Durée d'activité
+                  </p>
+                  <p>
+                    <span className={`heading-4 ${styles.dataBlueStrong}`}>
+                      {`${getCurrentWeekActiveTime(activities)} `}
+                    </span>
+                    <span className={`body-large ${styles.dataBlueLight}`}>
+                      minutes
+                    </span>
+                  </p>
+                </div>
+                <div className={styles.distance}>
+                  <p className={`body-default ${styles.label}`}>Distance</p>
+                  <p>
+                    <span className={`heading-4 ${styles.dataRedStrong}`}>
+                      {`${getCurrentWeekDistance(activities)} `}
+                    </span>
+                    <span className={`body-large ${styles.dataRedLight}`}>
+                      kilomètres
+                    </span>
+                  </p>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      )}
     </motion.div>
   );
 }

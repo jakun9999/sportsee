@@ -3,10 +3,14 @@ import { formatToShortDate } from "../../utils/date";
 import { useData } from "../../contexts/DataContext";
 
 function ShortProfile() {
-  // Formating profile creation date to local format day number month year
-  // for example jeudi 1 juin 2025
+  const { profile, isLoading } = useData();
 
-  const { profile } = useData();
+  // Si les données sont en cours de chargement ou absentes
+  if (isLoading || !profile) {
+    return <div className={styles.shortProfile}>Chargement du profil...</div>;
+  }
+
+  // Désormais, on est 100% certain que `profile` existe !
   const formatedDate = formatToShortDate(profile.createdAt);
 
   return (
