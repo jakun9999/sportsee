@@ -1,0 +1,34 @@
+.error {
+  background-color: var(--color-bg-primary);
+  display: flex;
+  flex-direction: row;
+  justify-self: center;
+  height: 100vh;
+  width: 1024px;
+  display: flex;
+  flex-direction: column;
+  padding-top: 55px;
+}
+
+.logo {
+  margin-left: 100px;
+}
+
+.errorPosition {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 200px;
+}
+
+.errorDisplay {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-white);
+  border-radius: 10px;
+  width: 600px;
+  height: 350px;
+}

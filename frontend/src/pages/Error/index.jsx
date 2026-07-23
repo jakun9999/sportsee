@@ -1,4 +1,5 @@
 import styles from "./style.module.css";
+import HeaderLogo from "../../components/HeaderLogo";
 import { motion } from "framer-motion";
 
 const pageVariants = {
@@ -17,10 +18,17 @@ function Error() {
       exit="exit"
       transition={{ duration: 1, ease: "easeInOut" }}
     >
-      <div>
-        <h1 className="heading-1">404</h1>
-        <h2>Oups 🙈 Cette page n'existe pas</h2>
-        <p>La page que vous cherchez semble introuvable.</p>
+      <div className={styles.error}>
+        <div className={styles.logo}>
+          <HeaderLogo />
+        </div>
+        <div className={styles.errorPosition}>
+          <div className={styles.errorDisplay}>
+            <h1 className="heading-1">404</h1>
+            <h2>Oups 🙈 Cette page n'existe pas</h2>
+            <p>La page que vous cherchez semble introuvable.</p>
+          </div>
+        </div>
       </div>
     </motion.div>
   );
