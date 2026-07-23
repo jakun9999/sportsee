@@ -15,7 +15,6 @@ export const getUserProfile = async () => {
   const token = sessionStorage.getItem("token");
 
   if (!token) {
-    sessionStorage.removeItem("token");
     window.location.href = "/";
     return null;
   }
@@ -31,7 +30,6 @@ export const getUserProfile = async () => {
     console.error("Erreur lors de la récupération du profil :", error);
     // Si l'erreur est liée au token (ex: 401 expiré), on redirige
     if (error.response?.status === 401) {
-      sessionStorage.removeItem("token");
       window.location.href = "/";
     }
     throw error;
@@ -51,7 +49,6 @@ export const getUserActivity = async (startDate, endDate) => {
   const token = sessionStorage.getItem("token");
 
   if (!token) {
-    sessionStorage.removeItem("token");
     window.location.href = "/";
     return null;
   }
@@ -69,7 +66,6 @@ export const getUserActivity = async (startDate, endDate) => {
   } catch (error) {
     console.error("Erreur lors de la récupération de l'activité :", error);
     if (error.response?.status === 401) {
-      sessionStorage.removeItem("token");
       window.location.href = "/";
     }
     throw error;

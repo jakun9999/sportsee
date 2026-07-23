@@ -4,15 +4,10 @@ import axios from "axios";
 const AuthContext = createContext(null);
 
 export function AuthProvider({ children }) {
-  const [userId, setUserId] = useState(() => {
-    return sessionStorage.getItem("userId") || null;
-  });
-  const [weeklyGoal, setWeeklyGoal] = useState(() => {
-    return sessionStorage.getItem("weeklyGoal") || null;
-  });
-  const [token, setToken] = useState(() => {
-    return sessionStorage.getItem("token") || null;
-  });
+  // Les états démarrent à null (plus de lecture depuis sessionStorage)
+  const [userId, setUserId] = useState(null);
+  const [weeklyGoal, setWeeklyGoal] = useState(null);
+  const [token, setToken] = useState(null);
 
   const login = async (credentials) => {
     try {
@@ -26,12 +21,7 @@ export function AuthProvider({ children }) {
         weeklyGoal: newGoal,
       } = response.data;
 
-      // 1. Sauvegarde explicite dans le sessionStorage avec la NOUVELLE valeur
-      sessionStorage.setItem("token", newToken);
-      sessionStorage.setItem("userId", newUserId);
-      sessionStorage.setItem("weeklyGoal", newGoal);
-
-      // 2. Mise à jour du state React
+      // 1. Mise à jour uniquement dans l'état React (en mémoire)
       setToken(newToken);
       setUserId(newUserId);
       setWeeklyGoal(newGoal);
@@ -43,10 +33,7 @@ export function AuthProvider({ children }) {
   };
 
   const logout = () => {
-    sessionStorage.removeItem("token");
-    sessionStorage.removeItem("userId");
-    sessionStorage.removeItem("weeklyGoal");
-
+    // Reinitialisation simple des états en mémoire
     setToken(null);
     setUserId(null);
     setWeeklyGoal(null);
