@@ -38,7 +38,6 @@ export function AuthProvider({ children }) {
 
       return newUserId;
     } catch (error) {
-      console.error("Erreur lors de la connexion :", error);
       throw error;
     }
   };

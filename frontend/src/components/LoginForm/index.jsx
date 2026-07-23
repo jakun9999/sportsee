@@ -26,10 +26,7 @@ function LoginForm() {
       navigate("/dashboard");
     } catch (err) {
       // Gestion de l'erreur si les identifiants sont incorrects
-      setError(
-        err.response?.data?.message ||
-          "Identifiants incorrects ou serveur injoignable.",
-      );
+      setError("Identifiants incorrects ou serveur injoignable.");
     } finally {
       setIsSubmitting(false);
     }
