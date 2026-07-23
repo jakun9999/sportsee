@@ -1,6 +1,16 @@
+import { USER_DATA, USER_ACTIVITY } from "./mockData";
 import axios from "axios";
 
+// Turn modeMock to true to use Mock data instead of API
+const modeMock = true;
+
 export const getUserProfile = async () => {
+  if (modeMock) {
+    const user = USER_DATA[0];
+    if (!user) throw new Error("Impossible de charger les données du profil");
+    return user;
+  }
+
   const token = sessionStorage.getItem("token");
 
   if (!token) {
@@ -28,6 +38,14 @@ export const getUserProfile = async () => {
 };
 
 export const getUserActivity = async (startDate, endDate) => {
+  if (modeMock) {
+    const sessions = USER_ACTIVITY[0];
+    if (!sessions)
+      throw new Error(
+        "Impossible de charger les données d'activité de l'utilisateur",
+      );
+    return sessions;
+  }
   const token = sessionStorage.getItem("token");
 
   if (!token) {
