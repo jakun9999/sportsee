@@ -8,7 +8,9 @@
   padding-left: 100px;
   padding-right: 100px;
   height: 40.66px;
-  width: 1440px;
+  width: 100%;
+  min-width: 1024px;
+  max-width: 1440px;
 }
 
 .footerLeft {

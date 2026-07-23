@@ -3,5 +3,8 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  width: 1140px;
+  width: 100%;
+  min-width: 1024px;
+  max-width: 1140px;
+  margin: 0 auto;
 }

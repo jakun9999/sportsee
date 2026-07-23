@@ -3,25 +3,34 @@
   display: flex;
   flex-direction: row;
   justify-self: center;
+  width: 100%;
+  height: 100vh;
+  min-width: 1024px;
+  min-height: 780px;
+  max-width: 1440px;
+  max-height: 1024px;
+
+  margin: 0 auto;
 }
 
 .leftPane {
-  width: 632px;
-  height: 1024px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 55px 134px 177.59px 100px;
+  flex: 0 0 auto;
+  padding-top: 55px;
+  padding-left: 100px;
+  padding-right: 134px;
+  max-height: calc(23.41px + 151px + 617px);
 }
 
 .rightPane {
   background-size: cover;
-  min-width: 808px;
-  min-height: 1024px;
+  flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: end;
-  align-items: end;
+  justify-content: flex-end;
+  align-items: flex-end;
 }
 
 .info {

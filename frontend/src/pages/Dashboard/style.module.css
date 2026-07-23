@@ -1,28 +1,28 @@
 .dashboard {
-  width: 1052px;
-  flex-grow: 1;
-
   display: flex;
   flex-direction: column;
-  margin-top: 108px;
-  margin-bottom: 90px;
+
+  /* 1. Largeur max + Centrage de tout le Dashboard */
+  width: 100%;
+  max-width: 1052px; /* Ajuste selon la largeur max souhaitée pour ta page */
+  margin: 108px auto 90px auto; /* "auto" à gauche et à droite centre le dashboard */
+
+  /* 2. Permet aux sections de s'étirer à 100% DE CES 1052px */
+  align-items: stretch;
 }
 
 h2 {
   color: var(--color-black);
 }
 
-.sectionLastPerf,
-.sectionWeekPerf {
-  flex-grow: 1;
-}
-
 .sectionLastPerf {
   margin-top: 108px;
+  width: 100%;
 }
 
 .sectionWeekPerf {
   margin-top: 71px;
+  width: 100%;
 }
 
 .perfGraphContainer {
@@ -30,13 +30,7 @@ h2 {
   flex-direction: row;
   gap: 24px;
   margin-top: 32px;
-}
-
-.lastBpm {
-  width: 583px;
-  height: 484px;
-  background: var(--color-red-strong);
-  border-radius: 10px;
+  width: 100%;
 }
 
 .weekDate {
@@ -49,18 +43,21 @@ h2 {
   flex-direction: row;
   gap: 30px;
   margin-top: 32px;
+  width: 100%; /* S'étale sur la totalité des 1052px centré */
 }
 
 .summaryContainer {
-  width: 572px;
+  flex: 1; /* Prend tout l'espace restant à droite du graphe */
   height: 342px;
+  display: flex;
+  flex-direction: column;
 }
 
 .time,
 .distance {
   background: var(--color-white);
   border-radius: 10px;
-  width: 572px;
+  width: 100%;
   height: 103px;
   padding-left: 30px;
   display: flex;
@@ -68,6 +65,7 @@ h2 {
   justify-content: center;
   align-items: start;
   gap: 19px;
+  box-sizing: border-box;
 }
 
 .distance {

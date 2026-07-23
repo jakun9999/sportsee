@@ -12,7 +12,8 @@
   align-items: center;
   padding-left: 52px;
   padding-right: 52px;
-  flex-shrink: 0;
+  width: 100%;
+  max-width: 1052px;
 }
 
 .name {

@@ -43,6 +43,12 @@ function Profile() {
       animate="animate"
       exit="exit"
       transition={{ duration: 1, ease: "easeInOut" }}
+      style={{
+        width: "100%",
+        display: "flex",
+        flexDirection: "column",
+        flex: 1,
+      }}
     >
       {!isReady ? (
         <p>Chargement de vos données cours...</p>

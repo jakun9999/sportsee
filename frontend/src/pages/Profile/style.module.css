@@ -1,17 +1,19 @@
 .profile {
-  width: 1140px;
-  flex-grow: 1;
-
+  max-width: 1140px;
+  width: 100%;
   display: flex;
   flex-direction: row;
-  margin-top: 108px;
+  margin: 108px auto 90px auto; /* 1. Marge basse définie au lieu d'auto */
   gap: 57px;
+  box-sizing: border-box;
 }
 
 .leftPane {
   display: flex;
   flex-direction: column;
   gap: 16px;
+  /* Optionnel : si leftPane doit avoir une largeur fixe */
+  flex: 0 0 auto;
 }
 
 .profileDetails {
@@ -22,11 +24,11 @@
   width: 508px;
   height: 331px;
   padding: 40px 0 0 28px;
+  box-sizing: border-box; /* 2. Pour éviter que le padding n'agrandisse les 508px */
 }
 
 .profileTitle {
   border-bottom: 1px solid var(--color-gray-light);
-
   width: 456px;
   height: 51px;
   text-align: left;
@@ -38,13 +40,15 @@
   gap: 24px;
   color: var(--color-gray-strong);
   margin-top: 32px;
-  align-items: left;
+  /* align-items: left;  <-- 3. À CORRIGER : 'left' n'existe pas en CSS flexbox */
+  align-items: flex-start; /* Valeur correcte */
 }
 
 .statsTitle {
   display: flex;
   flex-direction: column;
   gap: 4px;
+  flex: 1;
 }
 
 .textBlack {
@@ -57,7 +61,7 @@
 
 .stats {
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 19px;
   margin-top: 32px;
 }
