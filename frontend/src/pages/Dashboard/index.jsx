@@ -21,7 +21,7 @@ const pageVariants = {
 
 function Dashboard() {
   const { profile, statistics, activities, isLoading, error } = useData();
-  if (error) return <Navigate to="/error" />;
+  if (error) return <Navigate to="/error" state={{ errorCode: 500 }} />;
 
   const isReady = !isLoading && profile && statistics && activities;
 
@@ -45,7 +45,7 @@ function Dashboard() {
       transition={{ duration: 1, ease: "easeInOut" }}
     >
       {!isReady ? (
-        <p>Chargement</p>
+        <p>Chargement de vos données en cours...</p>
       ) : (
         <div className={styles.dashboard}>
           <LongProfile />

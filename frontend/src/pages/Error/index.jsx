@@ -1,4 +1,5 @@
 import styles from "./style.module.css";
+import { useLocation } from "react-router-dom";
 import HeaderLogo from "../../components/HeaderLogo";
 import { motion } from "framer-motion";
 
@@ -9,6 +10,20 @@ const pageVariants = {
 };
 
 function Error() {
+  const location = useLocation();
+  const errorCode = location.state?.errorCode || 500;
+  let errorMessage = "";
+
+  switch (errorCode) {
+    case 404:
+      errorMessage = "Page introuvable !";
+      break;
+    case 500:
+      errorMessage = "Erreur du serveur !";
+    default:
+      errorMessage = "Une erreur est survenue";
+  }
+
   return (
     <motion.div
       key="error"
@@ -24,9 +39,8 @@ function Error() {
         </div>
         <div className={styles.errorPosition}>
           <div className={styles.errorDisplay}>
-            <h1 className="heading-1">404</h1>
-            <h2>Oups 🙈 Cette page n'existe pas</h2>
-            <p>La page que vous cherchez semble introuvable.</p>
+            <h1 className="heading-1">Code erreur : {errorCode}</h1>
+            <h2>{errorMessage}</h2>
           </div>
         </div>
       </div>

@@ -12,7 +12,9 @@ function LongProfile() {
 
   // Si les données sont en cours de chargement ou absentes
   if (isLoading || !profile || !activities) {
-    return <div className={styles.longProfile}>Chargement du profil...</div>;
+    return (
+      <div className={styles.longProfile}>Chargement du profil en cours...</div>
+    );
   }
 
   const formatedDate = formatToLongDate(profile.createdAt);

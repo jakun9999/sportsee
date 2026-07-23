@@ -5,6 +5,7 @@ import {
   Routes,
   Route,
   useLocation,
+  Navigate,
 } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import Home from "./pages/Home";
@@ -31,7 +32,11 @@ function AnimatedRoutes() {
             <Route path="/profile" element={<Profile />} />
           </Route>
         </Route>
-        <Route path="*" element={<Error />} />
+        <Route path="/error" element={<Error />} />
+        <Route
+          path="*"
+          element={<Navigate to="/error" state={{ errorCode: 404 }} replace />}
+        />
       </Routes>
     </AnimatePresence>
   );

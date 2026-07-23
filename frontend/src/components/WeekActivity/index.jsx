@@ -69,7 +69,9 @@ function WeekActivity() {
   return (
     <div className={styles.weekActivity}>
       {!isDataReady ? (
-        <div className={styles.loading}>Chargement de l'activité...</div>
+        <div className={styles.loading}>
+          Chargement de l'activité en cours...
+        </div>
       ) : (
         <>
           <div className={styles.main}>

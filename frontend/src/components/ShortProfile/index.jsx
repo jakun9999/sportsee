@@ -7,7 +7,11 @@ function ShortProfile() {
 
   // Si les données sont en cours de chargement ou absentes
   if (isLoading || !profile) {
-    return <div className={styles.shortProfile}>Chargement du profil...</div>;
+    return (
+      <div className={styles.shortProfile}>
+        Chargement du profil en cours...
+      </div>
+    );
   }
 
   // Désormais, on est 100% certain que `profile` existe !
