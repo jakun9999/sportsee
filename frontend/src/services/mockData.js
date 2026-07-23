@@ -2,10 +2,9 @@ export const USER_DATA = [
   {
     profile: {
       firstName: "Sophie",
-      lastName: "Martin",
+      lastName: "Martine",
       createdAt: "2025-01-01",
-      weeklyGoal: 2,
-      age: 32,
+      age: 33,
       gender: "female",
       weight: 60,
       height: 165,
