@@ -75,7 +75,6 @@ function Logo({ size = "large" }) {
           <li
             key={col.id}
             className={styles.col}
-            v
             style={{
               width: `${3 * scale}px`,
               height: `${currentTotalHeight}px`,

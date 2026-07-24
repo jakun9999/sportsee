@@ -32,6 +32,7 @@ function AnimatedRoutes() {
             <Route path="/profile" element={<Profile />} />
           </Route>
         </Route>
+
         <Route path="/error" element={<Error />} />
         <Route
           path="*"

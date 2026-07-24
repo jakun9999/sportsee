@@ -14,19 +14,9 @@ export function AuthProvider({ children }) {
       const response = await axios.post("/api/login", credentials, {
         withCredentials: true,
       });
-
-      const {
-        token: newToken,
-        userId: newUserId,
-        weeklyGoal: newGoal,
-      } = response.data;
-
-      // 1. Mise à jour uniquement dans l'état React (en mémoire)
-      setToken(newToken);
-      setUserId(newUserId);
-      setWeeklyGoal(newGoal);
-
-      return newUserId;
+      setToken(response.data.token);
+      setUserId(response.data.userId);
+      setWeeklyGoal(response.data.weeklyGoal);
     } catch (error) {
       throw error;
     }

@@ -21,8 +21,12 @@ export function useFetchUser() {
 
         // 2. Le token est bien présent, on lance les requêtes en parallèle
         const [profile, activity] = await Promise.all([
-          getUserProfile(), // On passe le token ici
-          getUserActivity("2000-01-01", new Date().toISOString().split("T")[0]),
+          getUserProfile(token), // On passe le token ici
+          getUserActivity(
+            token,
+            "2000-01-01",
+            new Date().toISOString().split("T")[0],
+          ),
         ]);
 
         setData({

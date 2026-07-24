@@ -23,9 +23,11 @@ function LoginForm() {
 
       // 4. Si ça réussit, on bascule sur le dashboard
       // Framer Motion va automatiquement animer la transition !
+
       navigate("/dashboard");
     } catch (err) {
       // Gestion de l'erreur si les identifiants sont incorrects
+      console.log(err);
       setError("Identifiants incorrects ou serveur injoignable.");
     } finally {
       setIsSubmitting(false);
