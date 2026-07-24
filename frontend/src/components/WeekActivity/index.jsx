@@ -45,7 +45,7 @@ function WeekActivity() {
   const { weeklyGoal } = useAuth();
 
   // On calcule l'état de préparation
-  const isDataReady = !isLoading && profile && activities && weeklyGoal;
+  const isDataReady = !isLoading && profile && activities;
 
   const activityCount = isDataReady
     ? getCurrentWeekActivitiesCount(activities)
