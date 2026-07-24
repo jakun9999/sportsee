@@ -1,5 +1,12 @@
 import styles from "./style.module.css";
 
+/**
+ * Cartes pour l'affichage des données globales de l'utilisateur
+ * sur l'ensemble de ses sessions.
+ * @param {*} param0
+ * @example
+ * <SummaryCard title="titre de la carte" total=256 unit="km" />
+ */
 function SummaryCard({ title = "", total = "", unit = "" }) {
   return (
     <div className={styles.summaryCard}>

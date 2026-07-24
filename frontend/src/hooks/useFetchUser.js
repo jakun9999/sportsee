@@ -9,7 +9,7 @@ export function useFetchUser() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    // 1. Si le token n'est pas encore disponible, on attend !
+    // Si le token n'est pas encore disponible, on attend !
     if (!token) {
       setIsLoading(true);
       return;
@@ -19,7 +19,7 @@ export function useFetchUser() {
       try {
         setIsLoading(true);
 
-        // 2. Le token est bien présent, on lance les requêtes en parallèle
+        // Le token est bien présent, on lance les requêtes en parallèle
         const [profile, activity] = await Promise.all([
           getUserProfile(token), // On passe le token ici
           getUserActivity(
@@ -43,7 +43,7 @@ export function useFetchUser() {
     };
 
     fetchData();
-  }, [token]); // 3. Important : React relancera l'effet dès que `token` est disponible !
+  }, [token]); // Important : React relancera l'effet dès que `token` sera disponible !
 
   return { data, isLoading, error };
 }

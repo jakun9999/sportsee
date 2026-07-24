@@ -4,16 +4,22 @@ import { useAuth } from "../../contexts/AuthContext";
 import { NavLink } from "react-router-dom";
 import styles from "./style.module.css";
 
+/**
+ * Menu de navigation pour les utilisateurs authentifiés
+ * Utilisé dans le composant Header.
+ *
+ * @example
+ * <Nav />
+ */
 function Nav() {
   const { logout } = useAuth();
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    // 1. On vide le state global dans le Context
+    // On vide le state global dans le Context d'authentification
     logout();
 
-    // 2. On redirige immédiatement vers la page de connexion / accueil
-    // AnimatePresence va s'occuper de la transition fluide !
+    // On redirige immédiatement vers la page de connexion / accueil
     navigate("/");
   };
   return (

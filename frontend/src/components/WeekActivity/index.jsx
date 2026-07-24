@@ -5,6 +5,11 @@ import { getCurrentWeekActivitiesCount } from "../../utils/stats";
 import { useData } from "../../contexts/DataContext";
 import { useAuth } from "../../contexts/AuthContext";
 
+/**
+ * Rendu pour les 2 labels qui accompagnent le graphique
+ * de type Pie avec un rond de couleur. *
+ *
+ */
 const RenderCustomLabel = ({ cx, cy, outerRadius, name, fill, index }) => {
   const RADIAN = Math.PI / 180;
   const customAngle = index === 0 ? 205 : 40;
@@ -40,6 +45,14 @@ const RenderCustomLabel = ({ cx, cy, outerRadius, name, fill, index }) => {
   );
 };
 
+/**
+ * Affichage de l'activité de la semaine sous forme
+ * de graphique Pie recharts. (nombre d'activités réalisées
+ * sur nombre d'activités à réaliser par semaine).
+ *
+ * @example
+ * <WeekActivity />
+ */
 function WeekActivity() {
   const { profile, activities, isLoading } = useData();
   const { weeklyGoal } = useAuth();

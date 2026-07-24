@@ -1,5 +1,12 @@
 import styles from "./style.module.css";
 
+/**
+ * Array avec les dimensions de chaque barre
+ * verticale du logo animé.
+ * Un léger délai est ajouté pour l'animation
+ * en décalé pour chaque barre
+ */
+
 const LOGO_DATA = [
   {
     id: 1,
@@ -43,8 +50,16 @@ const LOGO_DATA = [
   },
 ];
 
+/**
+ * Logo animé sportsee utilisable avec 2 tailles.
+ * Une pour le header (en grand) et une pour le footer
+ * en petit. Le scaling est fait via le paramètre size
+ * qui peut être large ou small.
+ *
+ * @example
+ * <Logo size="large" />
+ */
 function Logo({ size = "large" }) {
-  // Scaling the logo dimension (large for header logo, small for footer logo)
   const scale = size === "small" ? 0.9 : 1;
 
   return (
@@ -56,18 +71,19 @@ function Logo({ size = "large" }) {
       }}
     >
       {LOGO_DATA.map((col) => {
-        // Adapting size based on scaling
+        // Adaptation des dimensions pour le scaling.
         const currentTotalHeight = col.totalHeight * scale;
         const currentTopHeight = col.topHeight * scale;
         const currentBottomHeight = col.bottomHeight * scale;
         const currentMarginTop = col.marginTop * scale;
 
-        // Calculate slice based on scaled values
+        // Calcul du slice par rapport au scaling
         const currentTopPositionForBottomHeight =
           currentTotalHeight - currentBottomHeight;
         const currentSliceDistance = currentTotalHeight - currentTopHeight;
 
-        // Calculate translate max / min based on scale
+        // Calcul des translations pour les animations en fonction
+        // du scaling.
         const bottomTranslation = 1 * scale;
         const topTranslation = -0.5 * scale;
 
@@ -81,7 +97,7 @@ function Logo({ size = "large" }) {
               marginTop: `${currentMarginTop}px`,
             }}
           >
-            {/* Red part */}
+            {/* Partie rouge de la barre */}
             <div
               className={styles.colTop}
               style={{
@@ -92,7 +108,7 @@ function Logo({ size = "large" }) {
                 "--bottom-translate": `${bottomTranslation}px`,
               }}
             />
-            {/* Blue part */}
+            {/* Partie bleu de la barre */}
             <div
               className={styles.colBottom}
               style={{

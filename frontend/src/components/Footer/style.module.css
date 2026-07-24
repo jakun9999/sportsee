@@ -35,5 +35,5 @@
 }
 
 .space {
-  min-width: 73px;
+  min-width: 73px; /* Respecte le prolongement sur le li contact */
 }

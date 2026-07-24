@@ -11,10 +11,14 @@
   min-width: 1024px;
   max-width: 1440px;
   margin: 0 auto;
+
+  box-sizing: border-box; /* on évite de perdre de la place à cause de paddings */
+}
+
+/* Un peu de padding pour l'affichage en 1024 */
+.header {
   padding-left: 15px;
   padding-right: 15px;
-
-  box-sizing: border-box;
 }
 
 .outlet {
@@ -22,5 +26,8 @@
   width: 100%;
   flex-direction: column;
 
-  flex: 1;
+  flex: 1; /* pour prendre toute la place restante */
+
+  padding-left: 15px;
+  padding-right: 15px;
 }

@@ -1,6 +1,13 @@
 import styles from "./style.module.css";
 import Logo from "../Logo";
 
+/**
+ * Composant footer utilisé uniquement dasn les pages où l'utilisateur
+ * est authentifié (intégré au Layout)
+ *
+ * @example
+ * <Footer />
+ */
 function Footer() {
   return (
     <div className={styles.footer}>

@@ -4,10 +4,14 @@ import { formatToLongDate } from "../../utils/date";
 import { getTotalDistance } from "../../utils/stats";
 import { useData } from "../../contexts/DataContext";
 
+/**
+ * Composant LongProfile affichant la photo et les informations
+ * de l'utilisateur sur toute la largeur de la page.
+ *
+ * @example
+ * <LongProfile />
+ */
 function LongProfile() {
-  // Formating profile creation date to local format day number month year
-  // for example jeudi 1 juin 2025
-
   const { profile, activities, isLoading } = useData();
 
   // Si les données sont en cours de chargement ou absentes
@@ -17,6 +21,7 @@ function LongProfile() {
     );
   }
 
+  // formatage de la date pour l'afficher dans le bon format
   const formatedDate = formatToLongDate(profile.createdAt);
 
   return (

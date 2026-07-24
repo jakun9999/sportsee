@@ -5,77 +5,79 @@
   align-items: flex-start;
 }
 
-/* Pills container */
+/* Conteneur de la barre complète */
 .col {
-  position: relative; /* CRUCIAL : Becomes the starting point (0,0) for top and bottom part */
+  position: relative;
+  /* IMPORTANT : devient la point de départ (0,0) pour la partie
+  haute et la partie basse qui composent la barre */
 }
 
-/* Common styles for both top and bottom part of the pills */
+/* Styles commun aux deux parties de la barre */
 .colTop,
 .colBottom {
-  position: absolute; /* Out of standard stream */
+  position: absolute; /* On les sort du flux standard */
   left: 0;
   width: 100%;
   border-radius: 100px;
 }
 
-/* --- Red component --- */
+/* --- Partie rouge --- */
 .colTop {
   background: linear-gradient(180deg, #f99885 0%, #df392b 100%);
-  z-index: 2; /* stay above bottom part */
-  top: 0; /* Aligned on the top part of virtual container */
+  z-index: 2; /* reste au dessus de la barre du bas */
+  top: 0; /* aligné en haut du conteneur */
   transform: translateY(0);
   animation: slideRedColDown 3.5s ease-in-out infinite;
 }
 
-/* --- Blue component --- */
+/* --- Partie bleue --- */
 .colBottom {
   background: linear-gradient(180deg, #f4320b 0%, #5465f7 100%);
-  z-index: 1; /* Stays behind top component */
+  z-index: 1; /* Reste derrière le composant rouge */
 }
 
-/* --- KEYFRAMES for animation --- */
+/* --- KEYFRAMES (animation) --- */
 
 @keyframes slideRedColDown {
   0% {
-    transform: translateY(0); /* initial top position */
+    transform: translateY(0); /* position initiale haute */
   }
 
-  /* ---- Goes down ---- */
+  /* ---- ça descend ---- */
   40% {
-    /* OVERSHOOT */
+    /* décallage léger plus bas pour l'effet de saut */
     transform: translateY(calc(var(--slide-distance) + var(-bottom-translate)));
   }
   45% {
-    /* NORMAL POSITION */
+    /* position normale */
     transform: translateY(var(--slide-distance));
   }
   50% {
-    /* OVERSHOOT */
+    /* décallage léger plus bas pour l'effet de saut */
     transform: translateY(
       calc(var(--slide-distance) + var(--bottom-translate))
     );
   }
   55% {
-    /* NORMAL POSITION */
+    /* position normale */
     transform: translateY(var(--slide-distance));
   }
 
-  /* ---- Goes up ---- */
+  /* ---- ça remonte ---- */
   85% {
-    /* OVERSHOOT */
+    /* décallage léger plus haut pour l'effet de saut */
     transform: translateY(var(--top-translate));
   }
   90% {
-    /* NORMAL POSITION */
+    /* position normale */
     transform: translateY(0);
   }
   95% {
-    /* OVERSHOOT */
+    /* décallage léger plus haut pour l'effet de saut */
     transform: translateY(var(--top-translate));
   }
   100% {
-    /* NORMAL POSITION */
+    /* position normale */
     transform: translateY(0);
   }
 }

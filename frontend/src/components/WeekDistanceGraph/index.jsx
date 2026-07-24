@@ -12,6 +12,11 @@ import {
 } from "recharts";
 import { useData } from "../../contexts/DataContext";
 
+/**
+ * Rendu du tooltip personnalisé pour être conforme
+ * à la maquette Figma.
+ *
+ */
 const CustomTooltip = ({ active, payload }) => {
   if (active && payload && payload.length) {
     const data = payload[0].payload;
@@ -25,6 +30,13 @@ const CustomTooltip = ({ active, payload }) => {
   return null;
 };
 
+/**
+ * Affichage des kilomètres des 4 semaines sélectionnées sous forme
+ * de graphique type Bar recharts. (km par semaine).
+ *
+ * @example
+ * <WeekDistanceGraph />
+ */
 function WeekDistanceGraph() {
   const { activities } = useData();
   const [endDate, setEndDate] = useState(() => {
@@ -41,7 +53,7 @@ function WeekDistanceGraph() {
   const [isHovered, setIsHovered] = useState(false);
 
   const { currentPeriodActivities, periodLabel, averageKm } = useMemo(() => {
-    // 1. Définir proprement le lundi de départ sans casser la référence
+    // Définir proprement le lundi de départ sans casser la référence
     const startOfPeriod = new Date(endDate);
     startOfPeriod.setDate(endDate.getDate() - 27);
     startOfPeriod.setHours(0, 0, 0, 0);
@@ -52,7 +64,7 @@ function WeekDistanceGraph() {
     const options = { day: "numeric", month: "short" };
     const label = `${startOfPeriod.toLocaleDateString("fr-FR", options)} - ${endDate.toLocaleDateString("fr-FR", options)}`;
 
-    // 2. Création des semaines avec des copies fraîches pour éviter les mutations en chaîne
+    // Création des semaines avec des copies fraîches pour éviter les mutations en chaîne
     const weeks = [
       { name: "S1", km: 0, dayOffset: 0 },
       { name: "S2", km: 0, dayOffset: 7 },
@@ -80,7 +92,7 @@ function WeekDistanceGraph() {
 
     let totalKm = 0;
 
-    // 3. Boucle de tri sur les activités avec des comparaisons de nombres (timestamps)
+    // Boucle de tri sur les activités avec des comparaisons de nombres (timestamps)
     const safeActivities = activities || [];
     safeActivities.forEach((activity) => {
       const activityTime = new Date(activity.date).getTime();

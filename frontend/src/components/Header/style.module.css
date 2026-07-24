@@ -4,7 +4,10 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  min-width: 1024px;
+  /* calc pour repecter les padding left et right dans
+   * le composant Layout.
+   */
+  min-width: calc(1024px - 30px);
   max-width: 1140px;
   margin: 0 auto;
 }

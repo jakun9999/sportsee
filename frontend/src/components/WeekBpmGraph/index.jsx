@@ -11,6 +11,14 @@ import {
 } from "recharts";
 import { useData } from "../../contexts/DataContext";
 
+/**
+ * Affichage des BPM de la semaine sélectionné sous forme
+ * de graphique type Bar recharts. (min et max atteints par
+ * jour du lundi au dimanche et moyenne).
+ *
+ * @example
+ * <WeekBpmGraph />
+ */
 function WeekBpmGraph() {
   const { activities } = useData();
   const [endDate, setEndDate] = useState(() => {

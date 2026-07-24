@@ -4,7 +4,6 @@ import axios from "axios";
 const AuthContext = createContext(null);
 
 export function AuthProvider({ children }) {
-  // Les états démarrent à null (plus de lecture depuis sessionStorage)
   const [userId, setUserId] = useState(null);
   const [weeklyGoal, setWeeklyGoal] = useState(null);
   const [token, setToken] = useState(null);

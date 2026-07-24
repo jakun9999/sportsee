@@ -3,6 +3,12 @@ import React, { use, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 
+/**
+ * Formulaire de connexion affiché dans la page Home.
+ *
+ * @example
+ * <LoginForm />
+ */
 function LoginForm() {
   const { login } = useAuth();
   const navigate = useNavigate();
@@ -18,16 +24,13 @@ function LoginForm() {
     setIsSubmitting(true);
 
     try {
-      // 3. On appelle la fonction de connexion globale
+      // Appel de la fonction login du context auth
+      // pour générer un token afin de discuter avec
+      // le backend.
       await login({ username, password });
-
-      // 4. Si ça réussit, on bascule sur le dashboard
-      // Framer Motion va automatiquement animer la transition !
 
       navigate("/dashboard");
     } catch (err) {
-      // Gestion de l'erreur si les identifiants sont incorrects
-      console.log(err);
       setError("Identifiants incorrects ou serveur injoignable.");
     } finally {
       setIsSubmitting(false);

@@ -2,6 +2,13 @@ import styles from "./style.module.css";
 import { formatToShortDate } from "../../utils/date";
 import { useData } from "../../contexts/DataContext";
 
+/**
+ * Composant ShortProfile pour afficher un profil sans
+ * détail et prenant moins de place.
+ *
+ * @example
+ * <ShortProfile />
+ */
 function ShortProfile() {
   const { profile, isLoading } = useData();
 
@@ -14,7 +21,7 @@ function ShortProfile() {
     );
   }
 
-  // Désormais, on est 100% certain que `profile` existe !
+  // Formatage de la date de création du compte
   const formatedDate = formatToShortDate(profile.createdAt);
 
   return (
