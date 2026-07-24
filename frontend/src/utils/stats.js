@@ -32,9 +32,11 @@ export function getCurrentWeekDistance(activities = []) {
   const { start, end } = getWeekRange(new Date());
   const weeklyActivities = getActivitiesByTime(activities, start, end);
 
-  return weeklyActivities.reduce((acc, current) => {
-    return acc + current.distance;
-  }, 0);
+  return weeklyActivities
+    .reduce((acc, current) => {
+      return acc + current.distance;
+    }, 0)
+    .toFixed(2);
 }
 
 // returns number of activities for current week
@@ -71,7 +73,7 @@ export function getTotalDistance(activities = []) {
     return acc + current.distance;
   }, 0);
 
-  return distance;
+  return distance.toFixed(2);
 }
 
 export function getTotalCaloriesBurned(activities = []) {
